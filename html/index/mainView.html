@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta http-equiv="Access-Control-Allow-Origin" content="http://patrolapi.quanlytuantra.vn">
+
+  <!-- font awesome css -->
+  <link rel="stylesheet" href="../../plugins/font-awesome-4.7.0/css/font-awesome.min.css">
+  <link rel="icon" type="image/png" href="../../img/GuardOnline.png" />
+  <!-- Bootstrap core css -->
+  <link rel="stylesheet" href="../../MDBFree/css/bootstrap.min.css">
+
+  <!-- Meterial Design Bootstrap -->
+  <link rel="stylesheet" href="../../MDBFree/css/mdb.min.css">
+
+  <!-- datepicker css -->
+  <link rel="stylesheet" href="../../plugins/bootstrap-datetimepicker/css/bootstrap-datepicker3.min.css">
+
+  <!-- bootstrap datetime picker css -->
+  <link rel="stylesheet" href="../../plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css">
+
+  <!-- bootstrap toggle -->
+  <link rel="stylesheet" href="../../plugins/bootstrap-toggle-master/css/bootstrap-toggle.min.css">
+
+  <!-- toastr css -->
+  <link rel="stylesheet" href="../../plugins/toastr/css/toastr.min.css">
+
+  <!-- custom main css -->
+  <link rel="stylesheet" href="../../custom/css/main.css">
+
+  <!-- main view custom css -->
+  <link rel="stylesheet" href="../../custom/css/mainView.css">
+
+  <title>Main View</title>
+</head>
+
+<body>
+  <!-- navbar start-->
+  <nav class="navbar navbar-expand-lg bg-main-color white-text" style="padding-top: 0; padding-bottom: 0"></nav>
+  <!-- navbar end -->
+
+  <div class="container-fluid">
+
+    <div class="row mt-4">
+      <div class="col-lg-4">
+        <!-- card guard start -->
+        <div class="card card-guard">
+          <div class="card-header bg-main-color custom-card-header">
+            <div class="row">
+              <div class="col-sm-4">
+                <h5 class="trn mt-1" style="margin-left: -10px">Guards</h5>
+              </div>
+              <div class="col-sm-8">
+                <button class="btn btn-success pull-right trn text-capitalize" id="btnShowModalSendSMSGuards" style="margin-right: -10px; padding: 5px">Send
+                  message</button>
+                <button class="btn btn-success pull-right trn text-capitalize" id="btnAttendance" style="padding: 5px">Check
+                  Time</button>
+              </div>
+            </div>
+
+          </div>
+          <div class="card-body custom-card-body">
+            <div class="row mt-2">
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <input type="text" placeholder="Search name..." id="txtSearchGuardName" class="form-control form-control-sm">
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <select name="" id="selectGuardGroup" class="form-control form-control-sm selectGroups">
+
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-3" id="totalNumOfGuard"></div>
+              <div class="col-md-3" id="totalNumOfGuardOnline"></div>
+              <div class="col-md-3" id="totalNumOfGuardSOS"></div>
+              <div class="col-md-3" id="totalNumOfGPSerror"></div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <div class="table-responsive" style="height: 60vh">
+                  <table class="table table-striped table-hover custom-table text-center" id="tblGuard">
+                    <!-- guard content here -->
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- card guard end -->
+        <br>
+
+      </div>
+      <div class="col-lg-8">
+        <!-- card map start -->
+        <div class="card card-map-guard">
+          <!-- card header -->
+          <div class="card-header bg-main-color custom-card-header">
+            <div class="row">
+              <div class="col-sm-4">
+                <h5 class="trn">Map</h5>
+              </div>
+              <div class="col-sm-8 text-right">
+                <input type="checkbox" id="checkboxShowIncidentsMap" style="width: 20px; height: 20px; margin: 5px">
+                <span>Incidents</span>
+              </div>
+            </div>
+          </div>
+          <!-- card body map -->
+          <div class="card-body custom-card-body">
+
+          </div>
+        </div>
+        <!-- card map end -->
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12">
+        <!-- Modal -->
+        <div class="modal fade" id="modalSendSMSGuards" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+          aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title trn">Send Message</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div>
+                  <strong class="trn">Guards</strong>
+                  <ul class="list-group">
+                    <li class="list-group-item">
+                      <span id="guardNameList"></span>
+                    </li>
+                  </ul>
+                </div>
+                <div class="form-group">
+                  <label for="">
+                    <strong class="trn">Message</strong>
+                  </label>
+                  <textarea id="textareaSendSMSGuards" cols="30" rows="10" class="form-control"></textarea>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-custom btn-success trn" id="btnSendSMSGuards">Send</button>
+                <button type="button" class="btn btn-custom bg-main-color trn" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12">
+        <div class="modal fade right" id="modalMoreOptionSettings" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-full-height modal-right modal-notify modal-info" role="document">
+          <div class="modal-content">
+            <!--Header-->
+            <div class="modal-header">
+              <p class="heading lead">More Option Settings</p>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true" class="white-text">×</span>
+              </button>
+            </div>
+
+            <!--Body-->
+            <div class="modal-body">
+              <ul class="list-group">
+                <li class="list-group-item">
+                    <a href="#!">Change User Password</a>
+                </li>
+                <li class="list-group-item">
+                    <a href="">Change Language (English)</a>
+                </li>
+                <li class="list-group-item">
+                    <input type="checkbox" style="width: 20px; height: 20px"> Private Mode (No notification will be shown when active this mode)
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Google Map API -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCDad7iSedJtnPghrxQ46TXU8O4_poJ8No"></script>
+
+  <!-- JQuery core -->
+  <script src="../../MDBFree/js/jquery-3.3.1.min.js"></script>
+
+  <!-- jQuery translate.js -->
+  <script src="../../plugins/translate.js-master/jquery.translate.js"></script>
+
+  <!-- popper js core -->
+  <script src="../../MDBFree/js/popper.min.js"></script>
+
+  <!-- bootstrap js core -->
+  <script src="../../MDBFree/js/bootstrap.min.js"></script>
+
+  <!-- Meterial Design Bootstrap JS -->
+  <script src="../../MDBFree/js/mdb.min.js"></script>
+
+  <!-- bootstrap datepicker js -->
+  <script src="../../plugins/bootstrap-datetimepicker/js/bootstrap-datepicker.min.js"></script>
+
+  <!-- datetimepicker js -->
+  <script src="../../plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+
+  <!-- bootstrap-toggle -->
+  <script src="../../plugins/bootstrap-toggle-master/js/bootstrap-toggle.min.js"></script>
+
+  <!-- sweetalert -->
+  <script src="../../plugins/sweetalert/js/sweetalert.min.js"></script>
+
+  <!-- mqtt js -->
+  <script src="../../plugins/mqttJS/mqttws31.min.js"></script>
+
+  <!-- toastr js -->
+  <script src="../../plugins/toastr/js/toastr.min.js"></script>
+
+  <script src="../../custom/js/shared/constants.js"></script>
+
+  <script src="../../custom/js/shared/auth.js"></script>
+
+  <!-- config js -->
+  <script src="../../custom/js/shared/config-view-components/toastr.config.js"></script>
+  <script src="../../custom/js/shared/mqtt-config/mqtt.config.js"></script>
+
+  <!-- init components -->
+  <script src="../../custom/js/shared/config-view-components/datetime-comp.config.js"></script>
+  
+  <!-- custom main.js -->
+  <script src="../../custom/js/main.js"></script>
+
+  <!-- translate js -->
+  <script src="../../custom/js/translate.js"></script>
+
+  <!-- service request -->
+  <script src="../../custom/js/services/common.service.js"></script>
+  <script src="../../custom/js/services/validation.service.js"></script>
+  <script src="../../custom/js/services/time.service.js"></script>
+  <script src="../../custom/js/services/alert.service.js"></script>
+  <script src="../../custom/js/services/VnAccents.service.js"></script>
+  <script src="../../custom/js/services/filter.service.js"></script>
+  <script src="../../custom/js/services/guard.service.js"></script>
+  <script src="../../custom/js/services/group.service.js"></script>
+  <script src="../../custom/js/services/zone.service.js"></script>
+  <script src="../../custom/js/services/route.service.js"></script>
+  <script src="../../custom/js/services/incident.service.js"></script>
+  <script src="../../custom/js/services/tour.service.js"></script>
+  <script src="../../custom/js/services/device.service.js"></script>
+  <script src="../../custom/js/services/point.service.js"></script>
+  <script src="../../custom/js/services/asset.service.js"></script>
+  <script src="../../custom/js/services/schedule.service.js"></script>
+  <script src="../../custom/js/services/googlemap.service.js"></script>
+
+  <!-- components -->
+  <script src="../../custom/js/components/navbar.component.js"></script>
+  <script src="../../custom/js/components/select.component.js"></script>
+
+  <!-- mainView js -->
+  <script src="../../custom/js/pages/index/mainView.js"></script>
+
+  <script>
+    const interval = setInterval(() => {
+      showGuardInfo();
+      showCurrentMapGuard();
+    }, 60000);
+
+    $(window).on('beforeunload', () => {
+      clearInterval(interval)
+    })
+  </script>
+</body>
+
+</html>

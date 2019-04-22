@@ -1,0 +1,24 @@
+.card-insert-route{
+  height: 450px !important;
+}
+.card-points ul{
+  height: 250px; 
+  overflow: auto;
+}
+.alert{
+  margin-top: 5px;
+  margin-bottom: 5px;
+  /* padding-top: 3px; */
+  /* padding-bottom: 3px; */
+}
+.map{
+  width: 100%;
+  height: 380px;
+}
+.points{
+  height: 270px!important; 
+  overflow: auto!important;
+}
+.dropdown-item{
+  margin: 5px !important;
+}

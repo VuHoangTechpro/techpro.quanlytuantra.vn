@@ -1,0 +1,68 @@
+[{
+  "lat": "0.000000000000000",
+  "lng": "0.000000000000000",
+  "GuardName": "Vu Hoang - 19:18:12",
+  "img": "images/hoang.jpg",
+  "active": "0"
+}, {
+  "lat": "10.801585000000000",
+  "lng": "106.657560000000020",
+  "GuardName": "Tran Khoa - 19:18:12",
+  "img": "images/khoa.jpg",
+  "active": "0"
+}, {
+  "lat": "9.801585000000000",
+  "lng": "120.657560000000020",
+  "GuardName": "Nguyen Dung - 19:18:12",
+  "img": "images/khoa.jpg",
+  "active": "0"
+}]
+[{
+  "Lat": 10.802741,
+  "Long": 106.658407,
+  "Status": 0,
+  "Message": null,
+  "ImageUrl": ""
+}, {
+  "Lat": 10.80279,
+  "Long": 106.658032,
+  "Status": 0,
+  "Message": null,
+  "ImageUrl": ""
+}, {
+  "Lat": 10.802019,
+  "Long": 106.657856,
+  "Status": 1,
+  "Message": "Vu Hoang checked at 16:31:56 05/07/2018",
+  "ImageUrl": ""
+}, {
+  "Lat": 10.802876,
+  "Long": 106.657498,
+  "Status": 1,
+  "Message": "Vu Hoang checked at 15:43:09 06/07/2018",
+  "ImageUrl": ""
+}, {
+  "Lat": 10.802677,
+  "Long": 106.657358,
+  "Status": 1,
+  "Message": "Vu Hoang checked at 15:43:12 06/07/2018",
+  "ImageUrl": ""
+}, {
+  "Lat": 10.802741,
+  "Long": 106.658407,
+  "Status": 3,
+  "Message": 5,
+  "ImageUrl": ""
+}, {
+  "Lat": 10.80279,
+  "Long": 106.658032,
+  "Status": 3,
+  "Message": 4,
+  "ImageUrl": ""
+}, {
+  "Lat": 10.801323333333,
+  "Long": 106.65732833333,
+  "Status": 4,
+  "Message": "16:03:25 05/07/2018 Content: Wrong parking",
+  "ImageUrl": "ImagesUpload/05072018/Alert_05072018160325.png"
+}]

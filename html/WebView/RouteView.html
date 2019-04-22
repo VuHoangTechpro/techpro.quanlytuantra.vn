@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <title>Route Map</title>
+</head>
+
+<body>
+  
+ <div class="container-fluid">
+    <div id="mapid" style="position: absolute; top: 0; left: 0; width:100%; height: 100%; float:left"></div>
+ </div>
+
+  <!-- Google Map API -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA2JtN93nl-xarvyDCUu5QOVtFNMJk0S-A"></script>
+  <script src="http://code.jquery.com/jquery-1.8.0.min.js"></script>
+
+  <script>
+
+    function createMarkerGoogleMap(pos, urlIcon){
+      var icon = createIconGoogleMap(urlIcon);
+      var marker = new google.maps.Marker({
+        position: pos,
+        // animation: google.maps.Animation.BOUNCE,
+        icon: icon
+      });
+      return marker;
+    }
+
+    function createInfoWindowGoogleMap(content){
+      return new google.maps.InfoWindow({
+          content:content
+      });
+    }
+
+    function createIconGoogleMap(url){
+      var icon = {
+        url: url, // url
+        scaledSize: new google.maps.Size(17, 17), // scaled size
+        origin: new google.maps.Point(0, 0), // origin
+        anchor: new google.maps.Point(0, 0) // anchor
+      };
+      return icon;
+    }
+
+    function createPolylineGoogleMap(path, strokeColor){
+      var polyline = new google.maps.Polyline({
+        path: path,
+        strokeColor: strokeColor,
+        strokeOpacity: 0.8,
+        strokeWeight: 4
+      });
+      return polyline;
+    }
+
+    function createPolygonGooglemap(path){
+      var polygon = new google.maps.Polygon({
+        path: path,
+        strokeColor: "green",
+        strokeOpacity: 0.8,
+        strokeWeight: 2,
+        fillColor: "green",
+        fillOpacity: 0.4
+      });
+      return polygon;
+    }
+
+    function createMapPropGoogleMap(zoom, lat, lng){
+      var mapProp = {
+        center: new google.maps.LatLng(lat, lng),
+        zoom: zoom,
+      };
+      return mapProp;
+    }
+
+    function getUrlVars() {
+      var vars = {};
+      var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m, key, value) {
+          vars[key] = value;
+      });
+      return vars;
+    }
+
+  </script>
+
+  <script>
+
+    var currentMap = null;
+    var guardMarker = null;
+    var iconChecked = '../../img/Checked.png';
+    var URL_OBJECT, iZoneID, iGuardID;
+    var APP_DOMAIN = 'http://115.79.27.219/tracking/';
+    var arrColors = ['violet', 'yellow', 'pink', 'purple', 'cyan', 'teal','#8d6e63', '#616161', '#78909c', '#ffb74d', '#66bb6a', '#80d8ff', '#00acc1', '#5c6bc0', '#f48fb1', '#e1bee7', 'red', 'green', 'blue','orange', 'lime', 'ambe', '#0048BA', '#B0BF1A', '#7CB9E8', '#72A0C1', '#F2F0E6', '#9966CC', '#E32636', '#C46210', '#EFDECD', '#FFBF00', '#CFCFCF', '#551B8C', '#F2B400', '#CD9575', '#665D1E', '#915C83', '#841B2D', '#008000', '#8DB600', '#FBCEB1', '#00FFFF', '#D0FF14', '#4B5320', '#8F9779', '#E9D66B', '#B2BEB5', '#87A96B', '#FF9966' ];
+
+    function getRouteCreatedData() {
+      var url = 'http://115.79.27.219/tracking/api/GetRouteCreatedData.php';
+      var data = JSON.stringify({ iZoneID: iZoneID });
+      return $.post(url, data);
+    }
+
+    function getGuardGPSCurrent(sentData) {
+      var url = 'http://115.79.27.219/tracking/api/GetGuardGPSCurrent.php';
+      var data = { iGuardID: iGuardID };
+      return $.get(url, data);
+    }
+
+    function showRouteMap(){
+      var mapProp = createMapPropGoogleMap(15, 20.81715284, 106.77411238);
+      var mapArea = document.getElementById('mapid');
+      currentMap = new google.maps.Map(mapArea, mapProp);
+      // var iconChecked = '../../img/Checked.png';
+      // var iconRoutePoint = '../../img/point.png';
+      getRouteCreatedData().then(function(data){
+        if(!data) return;
+        var arrCurrentRoutesOnZone = JSON.parse(data);
+          for(var i = 0; i < arrCurrentRoutesOnZone.length; i++){
+          var route = arrCurrentRoutesOnZone[i];
+          var arrPoints = JSON.parse(route.PointObject);
+          buildPolylineRoute(arrPoints, iconChecked, arrColors[i]);
+        }
+      })
+      showGuardPos();
+    }
+
+    function showGuardPos(){
+      getGuardGPSCurrent().then(function(data){
+        if(!data) return;
+        var parsedData = JSON.parse(data);
+        if(parsedData.length == 0) return;
+        // const { dGuardLatCurrent, dGuardLongCurrent, sMessage, bOnline } = 
+        if(guardMarker) guardMarker.setMap(null);
+        var guard = parsedData[0];
+        var latGuard = Number(guard.dGuardLatCurrent);
+        var lngGuard = Number(guard.dGuardLongCurrent);
+        var sMessage = guard.sMessage;
+        var bOnline = guard.bOnline;
+        var urlGuard = '../../img/GuardOnline.png';
+        var guardPos = new google.maps.LatLng(latGuard, lngGuard);
+        guardMarker = createMarkerGoogleMap(guardPos, urlGuard);
+        guardMarker.setMap(currentMap);
+        var infoWindowGuard = createInfoWindowGoogleMap(sMessage);
+        infoWindowGuard.open(currentMap, guardMarker);
+        // currentMap.setCenter(guardPos);
+        // currentMap.setZoom(15);
+      })
+    }
+
+    function buildPolylineRoute(route, icon, strokeColor){
+      var path = [];
+      if(!route) return;
+      if(route.length == 0) return;
+      var tempObj = {};
+      for(var i = 0; i < route.length; i++){
+        var point = route[i];
+        var dPointLat = Number(point.dPointLat);
+        var dPointLong = Number(point.dPointLong);
+        var iPointID = point.iPointID;
+        var iNo = point.iNo;
+        var pos = new google.maps.LatLng(dPointLat, dPointLong);
+        var mes = iNo + '';
+        path.push(pos);
+         
+        var marker = createMarkerGoogleMap(pos, icon);
+        marker.setMap(currentMap);
+        var window = createInfoWindowGoogleMap(mes);
+        marker.addListener('click', function() {
+          window.open(currentMap, this);
+        })
+      }
+      var polyline = createPolylineGoogleMap(path, strokeColor);
+      polyline.setMap(currentMap);
+      return polyline;
+    }
+
+    
+    function buildPolylineNew(data, icon, strokeColor){
+      if(!data) return;
+      var polyline = createPolylineGoogleMap(path, strokeColor);
+      polyline.setMap(currentMap);
+      return polyline;
+    }
+  
+    URL_OBJECT = getUrlVars();
+    if(URL_OBJECT){
+      iZoneID = URL_OBJECT['iZoneID'];
+      iGuardID = URL_OBJECT['iGuardID'];
+      showRouteMap()
+    }
+
+    var interval = setInterval(showGuardPos, 5000);
+    
+  </script>
+
+</body>
+
+</html>

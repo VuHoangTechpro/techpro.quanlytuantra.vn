@@ -1,0 +1,18 @@
+[{
+  "iCheckingReportTotalID": "1",
+  "iRouteID": "55",
+  "iGuardID": "63",
+  "dDateReport": "2018-11-16",
+  "dDateTimeUpdate": "2018-11-16 13:24:04",
+  "iNumber_of_Checks_Required": "40",
+  "iNumber _of_Checks_Perfomed": "38",
+  "dCheck_Performance": "90",
+  "iAmount_of_unattended_time": "7",
+  "iTime_attendance": "793",
+  "dAttendance_Perfomance": "98",
+  "dUnattended_Time": "2",
+  "dOverall_performance": "91",
+  "iAverage_amount_of_unattended_time": "1",
+  "iLongest_duration_of_unattended": "2",
+  "dCombined_Performance": "94"
+}]

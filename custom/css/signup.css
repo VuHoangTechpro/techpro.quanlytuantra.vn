@@ -1,0 +1,48 @@
+body{
+    /* background-color: lightsteelblue; */
+  
+    /* background: #44A08D;  
+    background: -webkit-linear-gradient(to right, #093637, #44A08D);  
+    background: linear-gradient(to right, #093637, #44A08D);   */
+  
+    /* background: #4568DC;  
+    background: -webkit-linear-gradient(to right, #B06AB3, #4568DC); 
+    background: linear-gradient(to right, #B06AB3, #4568DC);  */
+  
+    background: #4ECDC4;  
+    background: -webkit-linear-gradient(to right, #556270, #4ECDC4);  
+    background: linear-gradient(to right, #556270, #4ECDC4); 
+  
+  
+    /* background-image: url('../../img/bg-login-guard.jpg'); */
+    /* background-size: cover; */
+    /* background-repeat: no-repeat; */
+  }
+
+  .btn-reset{
+      color: black;
+  }
+
+  .card{
+    border-radius: 20px;
+    width: 500px;
+    margin: 50px auto;
+    position: relative;
+    box-shadow: 0 0 15px 15px rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    /* background-color: transparent; */
+  }
+  .card .logo{
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translate(-50%, -50%);
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    color: white;
+    text-align: center;
+    line-height: 80px;
+    font-size: 3em;
+    background-color: seagreen;
+  }

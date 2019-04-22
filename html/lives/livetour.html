@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta http-equiv="Access-Control-Allow-Origin" content="http://patrolapi.quanlytuantra.vn">
+
+  <!-- font awesome css -->
+  <link rel="stylesheet" href="../../plugins/font-awesome-4.7.0/css/font-awesome.min.css">
+
+  <!-- Bootstrap core css -->
+  <link rel="stylesheet" href="../../MDBFree/css/bootstrap.min.css">
+  <link rel="icon" type="image/png" href="../../img/GuardOnline.png" />
+  <!-- Meterial Design Bootstrap -->
+  <link rel="stylesheet" href="../../MDBFree/css/mdb.min.css">
+
+  <!-- datepicker css -->
+  <link rel="stylesheet" href="../../plugins/bootstrap-datetimepicker/css/bootstrap-datepicker3.min.css">
+
+  <!-- bootstrap datetime picker css -->
+  <link rel="stylesheet" href="../../plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css">
+
+  <!-- pagination css -->
+  <link rel="stylesheet" href="../../plugins/paginationJs/pagination.css">
+
+  <link rel="stylesheet" href="../../plugins/toastr/css/toastr.min.css">
+
+  <!-- main view custom css -->
+  <link rel="stylesheet" href="../../custom/css/main.css">
+
+  <title>Live Tour</title>
+</head>
+
+<body>
+  <!-- navbar start-->
+  <nav class="navbar navbar-expand-lg bg-main-color white-text" style="padding-top: 0; padding-bottom: 0">
+     
+  </nav>
+  <!-- navbar end -->
+
+  <div class="container-fluid">
+
+    <div class="row my-3 row-custom">
+      <!-- filter and incident card -->
+      <div class="col-12">
+        <!-- card filter start -->
+        <div class="card card filter">
+          <div class="card-header bg-main-color custom-card-header">
+            <h4>
+              <i class="fa fa-filter"></i> <span class="trn">Filters</span>
+            </h4>
+          </div>
+          <div class="card-body custom-card-body">
+            <div class="row">
+              <div class="col-md-4">
+                <label for="" class="trn">by Guard</label>
+                <select name="" id="selectGuardName" class="form-control form-control-sm  selectGuards">
+                    <!-- option content guard name -->
+                </select>
+              </div>
+            <div class="col-md-4">
+              <label for="" class="trn">by Route</label>
+              <select name="" id="selectRouteName" class="form-control form-control-sm selectRoutes">
+                    <!-- option content guard name -->
+              </select>
+            </div>
+            <div class="col-md-4">
+                <label for="" class="trn">by Device</label>
+                <select name="" id="selectDeviceName" class="form-control form-control-sm selectDevices">
+                    <!-- option content guard name -->
+                </select>
+            </div>
+            </div>
+          </div>
+        </div>
+        <!-- card filter end -->
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="card card-tour">
+          <div class="card-header bg-main-color custom-card-header">
+            <h4>
+              <i class="fa fa-exclamation-triangle"></i> <span class="trn">Live Tour</span>
+            </h4>
+          </div>
+          <div class="card-body custom-card-body">
+            <div class="row">
+              <div class="col-12">
+                <div class="headerTblTours text-center font-weight-bold green-text" style="font-size: 1.2em"></div>
+              </div>
+            </div>
+            <div class="row my-3">
+              <div class="col-sm-8">
+                <div id="pagingToursControl"></div>
+              </div>
+              <div class="col-sm-4">
+                <div id="totalTours">
+
+                </div>
+              </div>
+            </div>
+            <div class="table-responsive">
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12">
+        <!-- Large event history details modal-->
+        <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true"
+          id="modalEventHistoryDetails">
+          <div class="modal-dialog modal-dialog-custom">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title trn" id="exampleModalLabel">Tour Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="row">
+                  <div class="col-md-8">
+                    <div id="pagingTourDetailsControl"></div> 
+                  </div>
+                  <div class="col-md-4">
+                    <div id="totalTourDetails"></div> 
+                  </div>
+                </div>
+                <div class="table-responsive">
+                  
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-custom bg-main-color trn" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+   
+    <div class="row">
+      <div class="col-12">
+        <div class="modal fade bd-example-modal-lg" tabindex="-1" id="modalEventMap">
+          <div class="modal-dialog modal-dialog-custom">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title trn" id="exampleModalLabel">Tour Map</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Google Map API -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCDad7iSedJtnPghrxQ46TXU8O4_poJ8No"></script>
+
+  <!-- JQuery core -->
+  <script src="../../MDBFree/js/jquery-3.3.1.min.js"></script>
+
+  <!-- popper js core -->
+  <script src="../../MDBFree/js/popper.min.js"></script>
+
+  <!-- bootstrap js core -->
+  <script src="../../MDBFree/js/bootstrap.min.js"></script>
+
+  <!-- Meterail Design Bootstrap JS -->
+  <script src="../../MDBFree/js/mdb.min.js"></script>
+
+  <!-- bootstrap datepicker js -->
+  <script src="../../plugins/bootstrap-datetimepicker/js/bootstrap-datepicker.min.js"></script>
+
+  <!-- datetimepicker js -->
+  <script src="../../plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+  
+  <!-- sweetalert js -->
+  <script src="../../plugins/sweetalert/js/sweetalert.min.js"></script>
+
+  <!-- pagination js -->
+  <script src="../../plugins/paginationJs/pagination.min.js"></script>
+
+  <!-- translate js plugins -->
+  <script src="../../plugins/translate.js-master/jquery.translate.js"></script>
+
+  <script src="../../plugins/toastr/js/toastr.min.js"></script>
+  <script src="../../plugins/mqttJS/mqttws31.min.js"></script>
+  <script src="../../custom/js/shared/constants.js"></script>
+  <script src="../../custom/js/shared/auth.js"></script>
+
+   <!-- config js -->
+   <script src="../../custom/js/shared/config-view-components/toastr.config.js"></script>
+   <script src="../../custom/js/shared/mqtt-config/mqtt.config.js"></script>
+ 
+   <!-- init components -->
+   <script src="../../custom/js/shared/config-view-components/datetime-comp.config.js"></script>
+   
+   <!-- custom main.js -->
+   <script src="../../custom/js/main.js"></script>
+
+   <!-- translate js -->
+   <script src="../../custom/js/translate.js"></script>
+
+   <!-- service -->
+   <script src="../../custom/js/services/common.service.js"></script>
+  <script src="../../custom/js/services/guard.service.js"></script>
+  <script src="../../custom/js/services/group.service.js"></script>
+  <script src="../../custom/js/services/zone.service.js"></script>
+  <script src="../../custom/js/services/route.service.js"></script>
+  <script src="../../custom/js/services/incident.service.js"></script>
+  <script src="../../custom/js/services/tour.service.js"></script>
+  <script src="../../custom/js/services/device.service.js"></script>
+  <script src="../../custom/js/services/point.service.js"></script>
+  <script src="../../custom/js/services/asset.service.js"></script>
+  <script src="../../custom/js/services/time.service.js"></script>
+  <script src="../../custom/js/services/schedule.service.js"></script>
+  <script src="../../custom/js/services/alert.service.js"></script>
+  <script src="../../custom/js/services/validation.service.js"></script>
+  <script src="../../custom/js/services/VnAccents.service.js"></script>
+  <script src="../../custom/js/services/filter.service.js"></script>
+  <script src="../../custom/js/services/googlemap.service.js"></script>
+ 
+   <!-- components -->
+   <script src="../../custom/js/components/navbar.component.js"></script>
+   <script src="../../custom/js/components/select.component.js"></script>
+
+  <!-- livetour js -->
+  <script src="../../custom/js/pages/lives/livetour.js"></script>
+
+</body>
+
+</html>

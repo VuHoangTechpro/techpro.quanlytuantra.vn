@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta http-equiv="Access-Control-Allow-Origin" content="http://patrolapi.quanlytuantra.vn">
+  
+  <!-- font awesome css -->
+  <link rel="stylesheet" href="../../plugins/font-awesome-4.7.0/css/font-awesome.min.css">
+
+  <!-- Bootstrap core css -->
+  <link rel="stylesheet" href="../../MDBFree/css/bootstrap.min.css">
+
+  <!-- Meterial Design Bootstrap -->
+  <link rel="stylesheet" href="../../MDBFree/css/mdb.min.css">
+  <link rel="icon" type="image/png" href="../../img/GuardOnline.png" />
+  <!-- datepicker css -->
+  <link rel="stylesheet" href="../../plugins/bootstrap-datetimepicker/css/bootstrap-datepicker3.min.css">
+
+  <!-- bootstrap datetime picker css -->
+  <link rel="stylesheet" href="../../plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css">
+
+  <!-- pagination css -->
+  <link rel="stylesheet" href="../../plugins/paginationJs/pagination.css">
+
+  <link rel="stylesheet" href="../../plugins/toastr/css/toastr.min.css">
+
+  <!-- main custom css -->
+  <link rel="stylesheet" href="../../custom/css/main.css">
+
+  <title>Points Setting</title>
+</head>
+
+<body>
+  <!-- navbar start-->
+  <nav class="navbar navbar-expand-lg bg-main-color white-text" style="padding-top: 0; padding-bottom: 0">
+
+  </nav>
+  <!-- navbar end -->
+
+  <div class="container-fluid">
+
+    <div class="row my-3 row-custom">
+      <!-- filter and incident card -->
+      <div class="col-lg-3">
+        <!-- card filter start -->
+        <div class="card card filter">
+          <div class="card-header bg-main-color custom-card-header">
+            <h4>
+              <i class="fa fa-filter"></i> <span class="trn">Search</span>
+            </h4>
+          </div>
+          <div class="card-body custom-card-body">
+            <div class="row mt-3">
+              <div class="col-12">
+                <label for="" class="trn">by Zone</label>
+                <br>
+                <select name="" class="form-control selectZones" id="jcomboboxZone">
+
+                </select>
+              </div>
+            </div>
+            <div class="row mt-3">
+              <div class="col-12">
+                <button class="btn btn-custom bg-main-color pull-right trn" id="btnMapAllPoints">Map</button>
+                <button class="btn btn-custom bg-main-color pull-right trn" id="btnShowInsertPointModal">Insert</button>
+                <button class="btn btn-custom bg-main-color pull-right trn" id="">Export</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- card filter end -->
+      </div>
+
+      <div class="col-lg-9">
+        <!-- card Points start -->
+        <div class="card card-points">
+          <div class="card-header bg-main-color custom-card-header">
+            <h4>
+              <i class="fa fa-exclamation-triangle"></i> <span class="trn">Point list</span>
+            </h4>
+          </div>
+          <div class="card-body custom-card-body">
+            <div class="row my-3">
+              <div class="col-sm-8">
+                <div id="pagingPointsControl"></div>
+              </div>
+              <div class="col-sm-4">
+                <div id="totalPoints"></div>
+              </div>
+            </div>
+            <div class="table-responsive">
+
+            </div>
+          </div>
+        </div>
+        <!-- card Points end -->
+      </div>
+    </div>
+
+    <!-- modal all points map -->
+    <div class="row">
+      <div class="col-12">
+        <div class="modal fade bd-example-modal-lg" id="modalMapPoint">
+          <div class="modal-dialog modal-dialog-super-lg-custom">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title trn">Point Map</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- modal update point -->
+    <div class="row">
+      <div class="col-12">
+        <div class="modal fade" id="modalUpdatePoint">
+          <div class="modal-dialog modal-dialog-super-lg-custom" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title trn">Update Point</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="row">
+                  <div class="col-lg-8" id="updatePointMap"></div>
+                  <div class="col-lg-4">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="" class="font-weight-bold">Zone</label>
+                          <select id="selectZoneUpdatePoint" class="form-control selectZonesNoAll">
+
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="" class="font-weight-bold">Name</label>
+                          <input type="text" class="form-control" id="txtUpdatePointName" placeholder="Enter name">
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="form-group">
+                          <label for="" class="font-weight-bold">Note</label>
+                          <input type="text" class="form-control" id="txtUpdatePointNote" placeholder="Enter note">
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                              <label for="" class="font-weight-bold trn">Fixed Checkpoint</label><br>
+                              <span class="trn">Yes   </span>
+                              <input type="radio" class="UpdateFixedCheckpoint"  name="UpdateFixedCheckpoint" value="1" id="UpdateFixedCheckpoint">
+                              <span class="trn">No    </span>
+                              <input type="radio" id="NotUpdateFixedCheckpoint" checked class="UpdateFixedCheckpoint" name="UpdateFixedCheckpoint" value="0">
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="" class="font-weight-bold">Radius allow</label>
+                            <input type="text" class="form-control" id="txtUpdateRadiusAllow" placeholder="Enter radius allow (m)">
+                          </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div>
+                          <label for="" class="font-weight-bold">Latitude: </label>
+                          <input type="text" disabled placeholder="Lat..." id="latUpdatePoint" class="form-control latPoint">
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div>
+                          <label for="" class="font-weight-bold">Longtitude: </label>
+                          <input type="text" disabled placeholder="Lng..." id="longUpdatePoint" class="form-control longPoint">
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-group mt-3">
+                      <label for="" class="font-weight-bold">RFID</label>
+                      <div class="input-group">
+                        <input type="text" class="form-control form-control-sm" id="txtUpdatePointRFIDSerial"
+                          placeholder="RFID..">
+                        <div class="input-group-append">
+                          <button class="btn btn-custom bg-main-color trn" id="btnCheckUpdatePointRFIDSerial" style="margin-top: 0">
+                            <i class="fa fa-check"></i>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-group mt-3">
+                      <label for="" class="font-weight-bold">QRCode</label>
+                      <div class="input-group">
+                        <input type="text" class="form-control" id="txtUpdatePointQRCodeSerial" placeholder="QRCode..">
+                        <div class="input-group-append">
+                          <button class="btn btn-custom bg-main-color trn" id="btnCheckUpdatePointQRCodeSerial" style="margin-top: 0">
+                            <i class="fa fa-check"></i>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-custom btn-success trn" id="btnUpdatePoint">Update</button>
+                <button type="button" class="btn btn-custom bg-main-color trn" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- modal insert point -->
+    <div class="row">
+      <div class="col-12">
+        <div class="modal fade" id="modalInsertPoint">
+          <div class="modal-dialog modal-dialog-super-lg-custom" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Insert Point</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="row">
+                  <div class="col-lg-8" id="insertPointMap"></div>
+                  <div class="col-lg-4">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="" class="font-weight-bold">Zone</label>
+                          <select id="selectZoneInsertPoint" class="form-control selectZonesNoAll">
+
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="" class="font-weight-bold">Name</label>
+                          <input type="text" class="form-control" id="txtInsertPointName" placeholder="Enter name">
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="form-group">
+                          <label for="" class="font-weight-bold">Note</label>
+                          <input type="text" class="form-control" id="txtInsertPointNote" placeholder="Enter note">
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                              <label for="" class="font-weight-bold trn">Fixed Checkpoint</label><br>
+                              <span class="trn">Yes</span>
+                              <input type="radio" class="FixedCheckpoint"  name="FixedCheckpoint" value="1" id="FixedCheckpoint">
+                              <span class="trn">No</span>
+                              <input type="radio" id="NotFixedCheckpoint" checked class="FixedCheckpoint" name="FixedCheckpoint" value="0">
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="" class="font-weight-bold">Radius allow</label>
+                            <input type="text" class="form-control" id="txtInsertRadiusAllow" placeholder="Enter radius allow (m)">
+                          </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div>
+                          <label for="" class="font-weight-bold">Latitude: </label>
+                          <input type="text" disabled placeholder="Lat..." class="form-control latPoint" id="latInsertPoint">
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div>
+                          <label for="" class="font-weight-bold">Longtitude: </label>
+                          <input type="text" disabled placeholder="Lng..." class="form-control longPoint" id="longInsertPoint">
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-group mt-3">
+                      <label for="" class="font-weight-bold">RFID</label>
+                      <div class="input-group">
+                        <input type="text" class="form-control form-control-sm" id="txtInsertPointRFIDSerial"
+                          placeholder="RFID..">
+                        <div class="input-group-append">
+                          <button class="btn btn-custom bg-main-color trn" id="btnCheckInsertPointRFIDSerial" style="margin-top: 0">
+                            <i class="fa fa-check"></i>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-group mt-3">
+                      <label for="" class="font-weight-bold">QRCode</label>
+                      <div class="input-group">
+                        <input type="text" class="form-control" id="txtInsertPointQRCodeSerial" placeholder="QRCode..">
+                        <div class="input-group-append">
+                          <button class="btn btn-custom bg-main-color trn" id="btnCheckInsertPointQRCodeSerial" style="margin-top: 0">
+                            <i class="fa fa-check"></i>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button class="btn btn-custom btn-success" id="btnInsertPoint">Save</button>
+                <button type="button" class="btn btn-custom bg-main-color" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12">
+        <div class="modal fade" id="modalPointQuestions">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Point Questions</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="row">
+                  <div class="col-12">
+                    <div class="form-group">
+                      <label for="" class="font-weight-bold">Question 1</label>
+                      <select class="form-control pointQuestions"></select>
+                    </div>
+                    <div class="form-group">
+                      <label for="" class="font-weight-bold">Question 2</label>
+                      <select class="form-control pointQuestions"></select>
+                    </div>
+                    <div class="form-group">
+                      <label for="" class="font-weight-bold">Question 3</label>
+                      <select class="form-control pointQuestions"></select>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button class="btn btn-custom  btn-success" id="btnSavetPointQuestions">Save</button>
+                  <button type="button" class="btn btn-custom bg-main-color" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Google Map API -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCDad7iSedJtnPghrxQ46TXU8O4_poJ8No"></script>
+
+  <!-- JQuery core -->
+  <script src="../../MDBFree/js/jquery-3.3.1.min.js"></script>
+
+  <!-- popper js core -->
+  <script src="../../MDBFree/js/popper.min.js"></script>
+
+  <!-- bootstrap js core -->
+  <script src="../../MDBFree/js/bootstrap.min.js"></script>
+
+  <!-- Meterail Design Bootstrap JS -->
+  <script src="../../MDBFree/js/mdb.min.js"></script>
+
+  <!-- bootstrap datepicker js -->
+  <script src="../../plugins/bootstrap-datetimepicker/js/bootstrap-datepicker.min.js"></script>
+
+  <!-- datetimepicker js -->
+  <script src="../../plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+
+  <!-- translate js plugins -->
+  <script src="../../plugins/translate.js-master/jquery.translate.js"></script>
+
+  <!-- sweetalert -->
+  <script src="../../plugins/sweetalert/js/sweetalert.min.js"></script>
+
+  <!-- pagination js -->
+  <script src="../../plugins/paginationJs/pagination.min.js"></script>
+
+  <script src="../../plugins/toastr/js/toastr.min.js"></script>
+  <script src="../../plugins/mqttJS/mqttws31.min.js"></script>
+  <script src="../../custom/js/shared/constants.js"></script>
+  <script src="../../custom/js/shared/auth.js"></script>
+
+  <!-- config js -->
+  <script src="../../custom/js/shared/config-view-components/toastr.config.js"></script>
+  <script src="../../custom/js/shared/mqtt-config/mqtt.config.js"></script>
+
+  <!-- init components -->
+  <script src="../../custom/js/shared/config-view-components/datetime-comp.config.js"></script>
+  
+  <!-- custom main.js -->
+  <script src="../../custom/js/main.js"></script>
+
+  <!-- translate js -->
+  <script src="../../custom/js/translate.js"></script>
+
+  <!-- service request -->
+  <script src="../../custom/js/services/common.service.js"></script>
+  <script src="../../custom/js/services/guard.service.js"></script>
+  <script src="../../custom/js/services/group.service.js"></script>
+  <script src="../../custom/js/services/zone.service.js"></script>
+  <script src="../../custom/js/services/route.service.js"></script>
+  <script src="../../custom/js/services/incident.service.js"></script>
+  <script src="../../custom/js/services/tour.service.js"></script>
+  <script src="../../custom/js/services/device.service.js"></script>
+  <script src="../../custom/js/services/point.service.js"></script>
+  <script src="../../custom/js/services/asset.service.js"></script>
+  <script src="../../custom/js/services/time.service.js"></script>
+  <script src="../../custom/js/services/schedule.service.js"></script>
+  <script src="../../custom/js/services/alert.service.js"></script>
+  <script src="../../custom/js/services/validation.service.js"></script>
+  <script src="../../custom/js/services/filter.service.js"></script>
+  <script src="../../custom/js/services/googlemap.service.js"></script>
+
+  <!-- components -->
+  <script src="../../custom/js/components/navbar.component.js"></script>
+  <script src="../../custom/js/components/select.component.js"></script>
+
+  <!-- Points Setting js -->
+  <script src="../../custom/js/pages/settings/managepoint.js"></script>
+
+</body>
+
+</html>

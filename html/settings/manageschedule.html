@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta http-equiv="Access-Control-Allow-Origin" content="http://patrolapi.quanlytuantra.vn">
+  <!-- font awesome css -->
+  <link rel="stylesheet" href="../plugins/font-awesome-4.7.0/css/font-awesome.min.css">
+
+  <!-- Bootstrap core css -->
+  <link rel="stylesheet" href="../MDBFree/css/bootstrap.min.css">
+
+  <!-- Meterial Design Bootstrap -->
+  <link rel="stylesheet" href="../MDBFree/css/mdb.min.css">
+  <link rel="icon" type="image/png" href="../../img/GuardOnline.png" />
+  <!-- datepicker css -->
+  <link rel="stylesheet" href="../plugins/bootstrap-datetimepicker/css/bootstrap-datepicker3.min.css">
+
+  <!-- bootstrap datetime picker css -->
+  <link rel="stylesheet" href="../plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css">
+
+  <!-- timepicker css -->
+  <link rel="stylesheet" href="../plugins/bootstrap-timepicker-gh-pages/css/timepicker.less">
+
+  <!-- timepicker css -->
+  <link rel="stylesheet" href="../plugins/tempusdomius/css/tempusdominus-bootstrap-4.min.css">
+
+  <!-- pagination css -->
+  <link rel="stylesheet" href="../plugins/paginationJs/pagination.css">
+
+  <!-- main custom css -->
+  <link rel="stylesheet" href="../custom/css/main.css">
+
+  <title>Schedule</title>
+</head>
+
+<body>
+  <!-- navbar start-->
+  <nav class="navbar navbar-expand-lg bg-main-color white-text" style="padding-top: 0; padding-bottom: 0">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          <i class="fa fa-shield icon-custom" style="color: whitesmoke"></i>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+          aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fa fa-bars icon-custom" style="color: white"></i>
+        </button>
+  
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active-menu-item">
+              <a class="nav-link" href="mainView.html">
+                <i class="fa fa-home icon-navbar"></i>
+                <span class="trn">Main View</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="livetour.html">
+                <i class="fa fa-street-view icon-navbar"></i>
+                <span class="trn">Live Tour</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="liveincident.html">
+                <i class="fa fa-exclamation-triangle icon-navbar"></i>
+                <span class="trn">Live Incident</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="liveattendance.html">
+                <i class="fa fa-exclamation-triangle icon-navbar"></i>
+                <span class="trn">Live Attendance</span>
+              </a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-area-chart icon-navbar"></i>
+                <span class="trn">Reports</span>
+              </a>
+              <div class="dropdown-menu">
+                <div class="dropdown-submenu">
+                  <a class="dropdown-item dropdown-toggle" href="#" id="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="trn">Patrolling Results</span>
+                  </a>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" href="reportdaily.html">Daily Report</a>
+                    <a class="dropdown-item" href="reportweekormonth.html">Partrolling & Incident Report</a>
+                    <a class="dropdown-item" href="reportpatrolling.html">Weekly, Monthly, Yearly Report</a>
+                    <a class="dropdown-item" href="historytour.html">Patrolling history</a>
+                  </div>
+                </div>
+                <div class="dropdown-submenu">
+                  <a class="dropdown-item dropdown-toggle" href="#" id="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="trn">Incident</span>
+                  </a>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" href="reportincident.html">Incident Report</a>
+                    <a class="dropdown-item" href="historyincident.html">Incident History</a>
+                  </div>
+                </div>
+                <div class="dropdown-submenu">
+                  <a class="dropdown-item dropdown-toggle" href="#" id="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="trn">Time Attendance</span>
+                  </a>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" href="historyattendance.html">Attendance History</a>
+                    <a class="dropdown-item" href="attendance-report-guard.html">Guard's Working-Idling Time Performance</a>
+                    <a class="dropdown-item" href="attendance-report-device.html">Device's Working-Idling Time Performance</a>
+                    <a class="dropdown-item" href="attendance-report-group.html">Group's Working-Idling Time Performance</a>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-cog icon-navbar"></i>
+                <span class="trn">Settings</span>
+              </a>
+              <div class="dropdown-menu">
+                <a class="dropdown-item trn" href="managepoint.html">Create Check Points</a>
+                <a class="dropdown-item trn" href="managegroup.html">Create Group-guard</a>
+                <a class="dropdown-item trn" href="manageguard.html">Security Guard Profile</a>
+                <a class="dropdown-item trn" href="managezone.html">Create Zone</a>
+                <a class="dropdown-item trn" href="manageroute.html">Create Route</a>
+                <a class="dropdown-item trn" href="manageasset.html">Create Asset</a>
+                <a class="dropdown-item trn" href="managedevice.html">Create Device</a>
+                <a class="dropdown-item trn" href="manageincident.html">Define Incidents</a>
+              </div>
+            </li>
+          </ul>
+          <ul class="navbar-nav">
+            <button class="btn custom-btn bg-main-color trn" id="changeLanguage">English</button>
+  
+          </ul>
+        </div>
+      </div>
+    </nav>
+  <!-- navbar end -->
+
+  <div class="container-fluid">
+
+    <div class="row my-3 row-custom">
+      <!-- filter and incident card -->
+      <div class="col-lg-3">
+        <!-- card filter start -->
+        <div class="card card filter">
+          <div class="card-header bg-main-color custom-card-header">
+            <h4>
+              <i class="fa fa-filter"></i> <span class="trn">Filters</span>
+            </h4>
+          </div>
+          <div class="card-body custom-card-body">
+            <div class="row mt-3">
+
+            </div>
+            <div class="row mt-3">
+              <div class="col-12">
+                <button class="btn btn-custom bg-main-color pull-right trn" id="btnShowScheduleInsertModal">Insert</button>
+                <button class="btn btn-custom bg-main-color pull-right trn" id="btnShowSchedule">View</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- card filter end -->
+      </div>
+
+      <div class="col-lg-9">
+        <!-- card Points start -->
+        <div class="card card-schedule">
+          <div class="card-header bg-main-color custom-card-header">
+            <h4>
+              <i class="fa fa-exclamation-triangle"></i> <span class="trn">Schedule</span>
+            </h4>
+          </div>
+          <div class="card-body custom-card-body">
+           
+            </div>
+            <div class="row my-3">
+              <div class="col-sm-8">
+                <div id="pagingScheduleControl"></div>
+              </div>
+              <div class="col-sm-4">
+                <div id="totalSchedule"></div>
+              </div>
+            </div>
+            <div class="table-responsive">
+
+            </div>
+          </div>
+        </div>
+        <!-- card Points end -->
+      </div>
+    </div>
+    <!-- Insert Schedule -->
+    <div class="row">
+      <div class="col-12">
+        <div class="modal fade" id="modalInsertSchedule" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title trn">Insert Schedule</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="form-group">
+                  <label for="" class="font-weight-bold trn">Schedule Name</label>
+                  <input type="text" placeholder="" class="form-control" id="txtInsertScheduleName">
+                </div>
+               
+                <div class="form-group">
+                  <label for="" class="font-weight-bold trn">Start</label>
+                  <div class="input-group date datetimepicker-bootstrap4" id="startTime" data-target-input="nearest" >
+                      <input type="text" class="form-control datetimepicker-input" data-target="#startTime" id="txtInsertScheduleStart"/>
+                      <div class="input-group-append" data-target="#startTime" data-toggle="datetimepicker">
+                          <div class="input-group-text"><i class="fa fa-clock-o"></i></div>
+                      </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="" class="font-weight-bold trn">End</label>
+                  <div class="input-group date datetimepicker-bootstrap4" id="endTime" data-target-input="nearest" >
+                      <input type="text" class="form-control datetimepicker-input" data-target="#endTime" id="txtInsertScheduleEnd"/>
+                      <div class="input-group-append" data-target="#endTime" data-toggle="datetimepicker">
+                          <div class="input-group-text"><i class="fa fa-clock-o"></i></div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button class="btn btn-success btn-custom pull-right trn" id="btnInsertSchedule">Insert</button>
+                <button type="button" class="btn btn-custom bg-main-color trn" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Update Schedule  -->
+    <div class="row">
+      <div class="col-12">
+        <div class="modal fade" id="modalUpdateSchedule" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title trn">Update Schedule</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                  <div class="form-group">
+                      <label for="" class="font-weight-bold trn">Schedule Name</label>
+                      <input type="text" placeholder="" class="form-control" id="txtUpdateScheduleName">
+                    </div>
+                   
+                    <div class="form-group">
+                      <label for="" class="font-weight-bold trn">Start</label>
+                      <div class="input-group date datetimepicker-bootstrap4" id="startTimeUpdate" data-target-input="nearest" >
+                          <input type="text" class="form-control datetimepicker-input" data-target="#startTimeUpdate" id="txtUpdateScheduleStart" />
+                          <div class="input-group-append" data-target="#startTimeUpdate" data-toggle="datetimepicker">
+                              <div class="input-group-text"><i class="fa fa-clock-o"></i></div>
+                          </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="" class="font-weight-bold trn">End</label>
+                      <div class="input-group date datetimepicker-bootstrap4" id="endTimeUpdate" data-target-input="nearest" >
+                          <input type="text" class="form-control datetimepicker-input" data-target="#endTimeUpdate" id="txtUpdateScheduleEnd"/>
+                          <div class="input-group-append" data-target="#endTimeUpdate" data-toggle="datetimepicker">
+                              <div class="input-group-text"><i class="fa fa-clock-o"></i></div>
+                          </div>
+                      </div>
+                    </div>
+                
+              </div>
+              <div class="modal-footer">
+                  <button class="btn btn-success btn-custom pull-right trn" id="btnUpdateSchedule">Save</button>
+                <button type="button" class="btn btn-custom bg-main-color trn" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Google Map API -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA2JtN93nl-xarvyDCUu5QOVtFNMJk0S-A"></script>
+
+  <!-- JQuery core -->
+  <script src="../MDBFree/js/jquery-3.3.1.min.js"></script>
+
+  <!-- popper js core -->
+  <script src="../MDBFree/js/popper.min.js"></script>
+
+  <!-- bootstrap js core -->
+  <script src="../MDBFree/js/bootstrap.min.js"></script>
+
+  <!-- Meterail Design Bootstrap JS -->
+  <script src="../MDBFree/js/mdb.min.js"></script>
+
+  <!-- bootstrap datepicker js -->
+  <script src="../plugins/bootstrap-datetimepicker/js/bootstrap-datepicker.min.js"></script>
+
+  <!-- datetimepicker js -->
+  <script src="../plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+
+  <!-- translate js plugins -->
+  <script src="../plugins/translate.js-master/jquery.translate.js"></script>
+
+  <!-- sweetalert -->
+  <script src="../plugins/sweetalert/js/sweetalert.min.js"></script>
+
+  <!-- pagination js -->
+  <script src="../plugins/paginationJs/pagination.min.js"></script>
+
+  <!-- momentJS -->
+  <script src="../plugins/momentJS/moment.js"></script>
+
+  <!-- timepicker js -->
+  <script src="../plugins/bootstrap-timepicker-gh-pages/js/bootstrap-timepicker.js"></script>
+
+    <!-- timepicker js -->
+  <script src="../plugins/tempusdomius/js/tempusdominus-bootstrap-4.min.js"></script>
+
+  <!-- custom main.js -->
+  <script src="../custom/js/main.js"></script>
+
+  <!-- translate js -->
+  <script src="../custom/js/translate.js"></script>
+
+  <!-- service request -->
+  <script src="../custom/js/service.js"></script>
+
+  <!-- validation js -->
+  <script src="../custom/js/validation.js"></script>
+
+  <!-- custom incident detail js -->
+  <script src="../custom/js/manageschedule.js"></script>
+
+  <script>
+    
+    
+  </script>
+</body>
+
+</html>

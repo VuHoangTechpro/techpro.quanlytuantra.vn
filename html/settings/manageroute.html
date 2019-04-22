@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta http-equiv="Access-Control-Allow-Origin" content="http://patrolapi.quanlytuantra.vn">
+  <!-- font awesome css -->
+  <link rel="stylesheet" href="../../plugins/font-awesome-4.7.0/css/font-awesome.min.css">
+
+  <!-- Bootstrap core css -->
+  <link rel="stylesheet" href="../../MDBFree/css/bootstrap.min.css">
+
+  <!-- Meterial Design Bootstrap -->
+  <link rel="stylesheet" href="../../MDBFree/css/mdb.min.css">
+  <link rel="icon" type="image/png" href="../../img/GuardOnline.png" />
+  <!-- datepicker css -->
+  <link rel="stylesheet" href="../../plugins/bootstrap-datetimepicker/css/bootstrap-datepicker3.min.css">
+
+  <!-- bootstrap datetime picker css -->
+  <link rel="stylesheet" href="../../plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css">
+
+  <!-- pagination css -->
+  <link rel="stylesheet" href="../../plugins/paginationJs/pagination.css">
+
+  <link rel="stylesheet" href="../../plugins/toastr/css/toastr.min.css">
+
+  <!-- main view custom css -->
+  <link rel="stylesheet" href="../../custom/css/main.css">
+
+  <!-- custom route css -->
+  <link rel="stylesheet" href="../../custom/css/route.css">
+ 
+  <title>Route</title>
+</head>
+
+<body>
+  <!-- navbar start-->
+  <nav class="navbar navbar-expand-lg bg-main-color white-text" style="padding-top: 0; padding-bottom: 0">
+     
+  </nav>
+  <!-- navbar end -->
+
+  <div class="container-fluid">
+
+    <div class="row my-2 row-custom">
+      <div class="col-lg-8 mb-1">
+        <!-- card route map start-->
+        <div class="card card-route-map card-insert-route">
+          <div class="card-header bg-main-color custom-card-header">
+            <h5 class="trn">
+              Route Map
+            </h5>
+          </div>
+          <div class="card-body custom-card-body">
+            
+          </div>
+        </div>
+        <!-- card route map start-->
+      </div>
+      <div class="col-lg-4">
+        <div class="row">
+          <div class="col-6 mb-1">
+            <div class="card card-points card-insert-route">
+              <div class="card-header custom-card-header bg-main-color">
+                <h5>
+                  <span class="trn">Select point</span>
+                </h5>
+              </div>
+              <div class="card-body custom-card-body">
+                <div class="form-group">
+                  <label for="" class="trn">Selected zone</label>
+                  <select name="" id="selectRouteZone" class="form-control selectZones">
+                    
+                  </select>
+                </div>
+
+                <ul class="list-group" id="pointsOnZone">
+                  
+                </ul>
+              </div>
+            </div>
+
+          </div>
+          <div class="col-6 mb-1">
+            <div class="card card-insert-route">
+              <div class="card-header bg-main-color custom-card-header">
+                <div class="row">
+                  <!-- <div class="col-lg-6">
+                      <h6>
+                         <span class="trn">Route</span>
+                      </h6>
+                  </div> -->
+                  <div class="col-12">
+                    <button class="btn btn-custom btn-success trn btn-block my-2" id="btnSaveSelectedPoints">Save Route</button>
+                  </div>
+                </div>
+              </div>
+              <div class="card-body custom-card-body">
+                <div class="sortable points" id="selectedPointsOnRoute">
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card card-route">
+          <div class="card-header bg-main-color custom-card-header">
+            <h5>
+              <i class="fa fa-exclamation-triangle"></i> <span class="trn">Route list</span>
+            </h5>
+          </div>
+          <div class="card-body custom-card-body">
+            <div class="row my-3">
+              <div class="col-sm-8">
+                <div id="pagingRoutesControl"></div>
+              </div>
+              <div class="col-sm-4">
+                <div id="totalRoutes"></div>
+              </div>
+            </div>
+            <div class="table-responsive">
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- update route modal -->
+    <div class="row">
+      <div class="col-12">
+        <!-- Modal Update Route Guard -->
+        <div class="modal fade" id="modalUpdateRouteGuard">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title trn">Update route</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">  
+                    <div class="text-center font-weight-bold green-text" style="font-size: 1.1em" id="routeUpdateInfo"></div>
+                  <div class="form-group">
+                    <label for="" class="font-weight-bold trn">Route Name</label>
+                    <input type="text" placeholder="Enter name.." id="txtUpdateRouteName" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <label for="" class="font-weight-bold trn">Dístance (km)</label>
+                    <input type="text" placeholder="Distance (km)" id="txtUpdateDistance" class="form-control" disabled>
+                  </div>
+                  <div class="form-group">
+                    <label for="" class="font-weight-bold trn">Speed (km/h)</label>
+                    <input type="text" placeholder="Speed (km/h)" id="txtUpdateSpeed" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <label for="" class="font-weight-bold trn">Min time (min)</label>
+                    <input type="text" placeholder="Min time (min)" id="txtUpdateMinTime" class="form-control txtMinTime" disabled>
+                  </div>
+                  <div class="form-group">
+                    <label for="" class="font-weight-bold trn">Time Completion (max)</label>
+                    <input type="text" placeholder="Max time (min)" id="txtUpdateCompletionTime" class="form-control timeComplete">
+                  </div>
+                  <div class="form-group">
+                      <label for="" class="font-weight-bold trn">Break time</label>
+                      <input type="text" placeholder="Break time" id="txtUpdateBreakTime" class="form-control breaktime">
+                    </div>
+                  <div class="form-group">
+                    <label for="" class="font-weight-bold trn">Tour execute</label>
+                    <input type="text" placeholder="Tour execute" id="txtUpdateTourExecute" class="form-control tourExecute">
+                  </div>
+                  <div class="form-group">
+                    <label for="" class="font-weight-bold trn">Guard</label>
+                    <select id="selectUpdateRouteGuard" class="selectGuards form-control"></select>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-custom bg-main-color trn" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-custom btn-success btnSaveRouteUpdateGuard trn">Save</button>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- insert route modal -->
+    <div class="row">
+      <div class="col-12">
+        <!-- Modal Insert Route Guard -->
+        <div class="modal fade" id="modalInsertRoute">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title trn">Insert route</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">  
+                  <div class="form-group">
+                    <label for="" class="font-weight-bold trn">Route Name</label>
+                    <input type="text" placeholder="Enter name.." id="txtInsertRouteName" class="form-control">
+                  </div>
+                  
+                  <div>
+                    <label for="" class="font-weight-bold trn">Type of Route</label><br>
+                    <span class="trn">Circle Line</span>
+                    <input type="radio" class="txtInsertRouteType" checked name="txtInsertRouteType" value="circle">
+                    <span class="trn">Straight Line</span>
+                    <input type="radio" id="txtInsertRouteType" class="txtInsertRouteType" name="txtInsertRouteType" value="straight">
+                  </div><br>
+                  
+                  <div class="form-group">
+                    <label for="" class="font-weight-bold trn">Dístance (km)</label>
+                    <input type="text" placeholder="Distance (km)" id="txtInsertDistance" class="form-control" disabled>
+                  </div>
+                  <div class="form-group">
+                    <label for="" class="font-weight-bold trn">Speed (km/h)</label>
+                    <input type="text" placeholder="Speed (km/h)" id="txtInsertSpeed" class="form-control speed">
+                  </div>
+                  <div class="form-group">
+                    <label for="" class="font-weight-bold trn">Min time (min)</label>
+                    <input type="text" placeholder="Min time (min)" id="txtInsertMinTime" class="form-control txtMinTime" disabled>
+                  </div>
+                  <div class="form-group">
+                    <label for="" class="font-weight-bold trn">Time Completion (max)</label>
+                    <input type="text" placeholder="Time Completion (min)" id="txtInsertCompletionTime" class="form-control maxTime">
+                  </div>
+                  <div class="form-group">
+                      <label for="" class="font-weight-bold trn">Break time</label>
+                      <input type="text" placeholder="Break time" id="txtInsertBreakTime" class="form-control breakTime">
+                    </div>
+                  <div class="form-group">
+                    <label for="" class="font-weight-bold trn">Tour execute</label>
+                    <input type="text" placeholder="Tour execute" id="txtInsertTourExecute" class="form-control tourExecute">
+                  </div>
+                  <div class="form-group">
+                    <label for="" class="font-weight-bold trn">Guard use</label>
+                    <select id="selectInsertRouteGuard" class="selectGuards form-control"></select>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-custom bg-main-color trn" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-custom btn-success  trn" id="btnSaveInsertRoute">Save</button>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- route view map -->
+    <div class="row">
+      <div class="col-12">
+        <div class="modal fade" id="modalViewMapRoute" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg modal-dialog-super-lg-custom" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title trn">Route Map</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+               
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-custom bg-main-color trn" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- update route points modal -->
+    <div class="row">
+      <div class="col-12">
+        <div class="modal fade" id="modalUpdateRoutePoints" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-super-lg-custom" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title trn">Update Route Points</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-8 mb-1">
+                        <!-- card route map start-->
+                        <div class="card card-insert-route card-route-update-point">
+                          <div class="card-header bg-main-color custom-card-header">
+                            <h5 class="trn">
+                              Route Map
+                            </h5>
+                          </div>
+                          <div class="card-body custom-card-body">
+                            
+                          </div>
+                        </div>
+                        <!-- card route map start-->
+                      </div>
+                      <div class="col-lg-4">
+                        <div class="row">
+                          <div class="col-6 mb-1">
+                            <div class="card card-points card-insert-route">
+                              <div class="card-header custom-card-header bg-main-color">
+                                <h5>
+                                  <span class="trn">Select point</span>
+                                </h5>
+                              </div>
+                              <div class="card-body custom-card-body">
+                                <ul class="list-group list-points" id="pointsOnZone_UpdateRoutePoints">
+                                  
+                                </ul>
+                              </div>
+                            </div>
+                
+                          </div>
+                          <div class="col-6 mb-1">
+                            <div class="card card-insert-route">
+                              <div class="card-header bg-main-color custom-card-header">
+                                <div class="row">
+                                  <!-- <div class="col-lg-6">
+                                      <h6>
+                                         <span class="trn">Route</span>
+                                      </h6>
+                                  </div> -->
+                                  <div class="col-12">
+                                    <button class="btn btn-custom btn-success trn btn-block my-2" id="btnSaveSelectedPoints">Save Route</button>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="card-body custom-card-body">
+                                <div class="sortable points" id="selectedPointsOnRoute_UpdateRoutePoints">
+                                  
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-custom bg-main-color trn" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Google Map API -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCDad7iSedJtnPghrxQ46TXU8O4_poJ8No"></script>
+
+  <!-- JQuery core -->
+  <script src="../../MDBFree/js/jquery-3.3.1.min.js"></script>
+
+  <!-- popper js core -->
+  <script src="../../MDBFree/js/popper.min.js"></script>
+
+  <!-- bootstrap js core -->
+  <script src="../../MDBFree/js/bootstrap.min.js"></script>
+
+  <!-- Meterail Design Bootstrap JS -->
+  <script src="../../MDBFree/js/mdb.min.js"></script>
+
+  <!-- bootstrap datepicker js -->
+  <script src="../../plugins/bootstrap-datetimepicker/js/bootstrap-datepicker.min.js"></script>
+
+  <!-- datetimepicker js -->
+  <script src="../../plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+
+  <!-- translate js plugins -->
+  <script src="../../plugins/translate.js-master/jquery.translate.js"></script>
+
+  <!-- sweetalert -->
+  <script src="../../plugins/sweetalert/js/sweetalert.min.js"></script>
+
+  <!-- jqeryUI -->
+  <script src="../../plugins/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+
+  <!-- pagination js -->
+  <script src="../../plugins/paginationJs/pagination.min.js"></script>
+
+  <script src="../../plugins/toastr/js/toastr.min.js"></script>
+  <script src="../../plugins/mqttJS/mqttws31.min.js"></script>
+  <script src="../../custom/js/shared/constants.js"></script>
+  <script src="../../custom/js/shared/auth.js"></script>
+
+  <!-- config js -->
+  <script src="../../custom/js/shared/config-view-components/toastr.config.js"></script>
+  <script src="../../custom/js/shared/mqtt-config/mqtt.config.js"></script>
+
+  <!-- init components -->
+  <script src="../../custom/js/shared/config-view-components/datetime-comp.config.js"></script>
+  
+  <!-- custom main.js -->
+  <script src="../../custom/js/main.js"></script>
+
+ <!-- translate js -->
+ <script src="../../custom/js/translate.js"></script>
+
+ <!-- service request -->
+ <script src="../../custom/js/services/common.service.js"></script>
+ <script src="../../custom/js/services/guard.service.js"></script>
+ <script src="../../custom/js/services/group.service.js"></script>
+ <script src="../../custom/js/services/zone.service.js"></script>
+ <script src="../../custom/js/services/route.service.js"></script>
+ <script src="../../custom/js/services/incident.service.js"></script>
+ <script src="../../custom/js/services/tour.service.js"></script>
+ <script src="../../custom/js/services/device.service.js"></script>
+ <script src="../../custom/js/services/point.service.js"></script>
+ <script src="../../custom/js/services/asset.service.js"></script>
+ <script src="../../custom/js/services/time.service.js"></script>
+ <script src="../../custom/js/services/schedule.service.js"></script>
+ <script src="../../custom/js/services/alert.service.js"></script>
+ <script src="../../custom/js/services/validation.service.js"></script>
+ <script src="../../custom/js/services/filter.service.js"></script>
+ <script src="../../custom/js/services/googlemap.service.js"></script>
+
+ <!-- components -->
+ <script src="../../custom/js/components/navbar.component.js"></script>
+ <script src="../../custom/js/components/select.component.js"></script>
+
+  <!-- ZOnes Setting js -->
+  <script src="../../custom/js/pages/settings/manageroute.js"></script>
+
+</body>
+
+</html>

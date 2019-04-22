@@ -1,0 +1,95 @@
+[{
+  "sCheckingCode": "1207205701062018",
+  "sGuardName": "Vu Hoang",
+  "sZoneName": "Zone 2",
+  "dAlertLat": "10.828788333333",
+  "dAlertLong": "106.70557",
+  "dDateTimeStart": "19:21:12 01\/06\/2018",
+  "dDateTimeEnd": null,
+  "ImageUrl": "ImagesUpload\/01062018\/Alert_01062018192112.png",
+  "sAlertDescription": "Littering",
+  "bStatus": "4"
+}, {
+  "sCheckingCode": "1207530701062018",
+  "sGuardName": "Vu Hoang",
+  "sZoneName": "Zone 2",
+  "dAlertLat": "10.829571666667",
+  "dAlertLong": "106.702685",
+  "dDateTimeStart": "19:53:23 01\/06\/2018",
+  "dDateTimeEnd": null,
+  "ImageUrl": "ImagesUpload\/01062018\/Alert_01062018195323.png",
+  "sAlertDescription": "Littering",
+  "bStatus": "4"
+}, {
+  "sCheckingCode": "1209161001062018",
+  "sGuardName": "Vu Hoang",
+  "sZoneName": "Zone 2",
+  "dAlertLat": "10.829603333333",
+  "dAlertLong": "106.70263833333",
+  "dDateTimeStart": "21:16:22 01\/06\/2018",
+  "dDateTimeEnd": null,
+  "ImageUrl": "ImagesUpload\/01062018\/Alert_01062018211622.png",
+  "sAlertDescription": "Littering",
+  "bStatus": "4"
+}, {
+  "sCheckingCode": "1209214901062018",
+  "sGuardName": "Vu Hoang",
+  "sZoneName": "Zone 2",
+  "dAlertLat": "10.829603333333",
+  "dAlertLong": "106.70263833333",
+  "dDateTimeStart": "21:22:03 01\/06\/2018",
+  "dDateTimeEnd": null,
+  "ImageUrl": "ImagesUpload\/01062018\/Alert_01062018212203.png",
+  "sAlertDescription": "Littering",
+  "bStatus": "4"
+}, {
+  "sCheckingCode": "1209281901062018",
+  "sGuardName": "Vu Hoang",
+  "sZoneName": "Zone 2",
+  "dAlertLat": "10.829603333333",
+  "dAlertLong": "106.70263833333",
+  "dDateTimeStart": "21:28:35 01\/06\/2018",
+  "dDateTimeEnd": null,
+  "ImageUrl": "ImagesUpload\/01062018\/Alert_01062018212835.png",
+  "sAlertDescription": "",
+  "bStatus": "4"
+}, {
+  "sCheckingCode": "1209335801062018",
+  "sGuardName": "Vu Hoang",
+  "sZoneName": "Zone 2",
+  "dAlertLat": "10.829478333333",
+  "dAlertLong": "106.70223",
+  "dDateTimeStart": "21:34:15 01\/06\/2018",
+  "dDateTimeEnd": null,
+  "ImageUrl": "ImagesUpload\/01062018\/Alert_01062018213415.png",
+  "sAlertDescription": "",
+  "bStatus": "4"
+}]
+[{
+  "iIncidentID": "1",
+  "sIncidentContent": "Burglary"
+}, {
+  "iIncidentID": "2",
+  "sIncidentContent": "Traffic jam"
+}, {
+  "iIncidentID": "3",
+  "sIncidentContent": "Fishing"
+}, {
+  "iIncidentID": "4",
+  "sIncidentContent": "Littering"
+}, {
+  "iIncidentID": "5",
+  "sIncidentContent": "Wrong parking"
+}, {
+  "iIncidentID": "6",
+  "sIncidentContent": "Broken window"
+}, {
+  "iIncidentID": "7",
+  "sIncidentContent": "Door open"
+}, {
+  "iIncidentID": "8",
+  "sIncidentContent": "Light off"
+}, {
+  "iIncidentID": "9",
+  "sIncidentContent": "Fire"
+}]

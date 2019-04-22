@@ -1,0 +1,64 @@
+body{
+  /* background-color: lightsteelblue; */
+
+  /* background: #44A08D;  
+  background: -webkit-linear-gradient(to right, #093637, #44A08D);  
+  background: linear-gradient(to right, #093637, #44A08D);   */
+
+  /* background: #4568DC;  
+  background: -webkit-linear-gradient(to right, #B06AB3, #4568DC); 
+  background: linear-gradient(to right, #B06AB3, #4568DC);  */
+
+  background: #4ECDC4;  
+  background: -webkit-linear-gradient(to right, #556270, #4ECDC4);  
+  background: linear-gradient(to right, #556270, #4ECDC4); 
+
+
+  /* background-image: url('../../img/bg-login-guard.jpg'); */
+  /* background-size: cover; */
+  /* background-repeat: no-repeat; */
+}
+.container{
+  height: 100vh;
+  /* background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center; */
+}
+
+#formLogin input:focus{
+  /* border: 2px solid green !important; */
+  /* box-shadow: 0 0 10px green !important; */
+  border: 1px solid green;
+  box-shadow: none;
+
+}
+#formLogin .btn{
+  padding: 10px 20px !important;
+}
+#formLogin .btn-reset{
+  color: black !important;
+}
+.card{
+  border-radius: 20px;
+  margin-top: 100px;
+  width: 350px;
+  margin: 100px auto;
+  position: relative;
+  box-shadow: 0 0 15px 15px rgba(0,0,0,0.3);
+  padding: 10px;
+  /* background-color: transparent; */
+}
+.card .logo{
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translate(-50%, -50%);
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  color: white;
+  text-align: center;
+  line-height: 80px;
+  font-size: 3em;
+  background-color: seagreen;
+}

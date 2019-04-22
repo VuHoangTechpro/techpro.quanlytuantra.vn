@@ -1,0 +1,190 @@
+[{
+  "iPointID": "78",
+  "sPointCode": "",
+  "sZoneName": "Zone 1",
+  "dPointLat": "20.82054995",
+  "dPointLong": "106.77008481",
+  "dDateTimeAdd": "2018-04-27 16:08:27"
+}, {
+  "iPointID": "79",
+  "sPointCode": "",
+  "sZoneName": "Zone 1",
+  "dPointLat": "20.81770391",
+  "dPointLong": "106.77398821",
+  "dDateTimeAdd": "2018-04-27 16:34:34"
+}, {
+  "iPointID": "80",
+  "sPointCode": "",
+  "sZoneName": "Zone 1",
+  "dPointLat": "20.81770399",
+  "dPointLong": "106.7739882",
+  "dDateTimeAdd": "2018-04-27 16:34:40"
+}, {
+  "iPointID": "81",
+  "sPointCode": "",
+  "sZoneName": "Zone 1",
+  "dPointLat": "20.81720844",
+  "dPointLong": "106.77353225",
+  "dDateTimeAdd": "2018-04-27 16:35:32"
+}, {
+  "iPointID": "82",
+  "sPointCode": "",
+  "sZoneName": "Zone 1",
+  "dPointLat": "20.81593535",
+  "dPointLong": "106.77253025",
+  "dDateTimeAdd": "2018-04-27 16:36:49"
+}, {
+  "iPointID": "83",
+  "sPointCode": "",
+  "sZoneName": "Zone 1",
+  "dPointLat": "20.81428472",
+  "dPointLong": "106.77116886",
+  "dDateTimeAdd": "2018-04-27 16:38:22"
+}, {
+  "iPointID": "84",
+  "sPointCode": "",
+  "sZoneName": "Zone 1",
+  "dPointLat": "20.81386694",
+  "dPointLong": "106.77146114",
+  "dDateTimeAdd": "2018-04-27 16:38:49"
+}, {
+  "iPointID": "85",
+  "sPointCode": "",
+  "sZoneName": "Zone 1",
+  "dPointLat": "20.81410976",
+  "dPointLong": "106.7716613",
+  "dDateTimeAdd": "2018-04-27 16:39:02"
+}, {
+  "iPointID": "86",
+  "sPointCode": "",
+  "sZoneName": "Zone 1",
+  "dPointLat": "20.81455915",
+  "dPointLong": "106.77206092",
+  "dDateTimeAdd": "2018-04-27 16:39:28"
+}, {
+  "iPointID": "87",
+  "sPointCode": "",
+  "sZoneName": "Zone 1",
+  "dPointLat": "20.81488729",
+  "dPointLong": "106.77233483",
+  "dDateTimeAdd": "2018-04-27 16:39:46"
+}, {
+  "iPointID": "88",
+  "sPointCode": "",
+  "sZoneName": "Zone 1",
+  "dPointLat": "20.81679248",
+  "dPointLong": "106.77386943",
+  "dDateTimeAdd": "2018-04-27 16:41:21"
+}, {
+  "iPointID": "89",
+  "sPointCode": "",
+  "sZoneName": "Zone 1",
+  "dPointLat": "20.81715284",
+  "dPointLong": "106.77411238",
+  "dDateTimeAdd": "2018-04-27 16:41:40"
+}, {
+  "iPointID": "90",
+  "sPointCode": "PO000",
+  "sZoneName": "Zone 1",
+  "dPointLat": "0",
+  "dPointLong": "0",
+  "dDateTimeAdd": "2018-04-27 16:41:40"
+}, {
+  "iPointID": "91",
+  "sPointCode": "PO111",
+  "sZoneName": "Zone 1",
+  "dPointLat": "0",
+  "dPointLong": "0",
+  "dDateTimeAdd": "2018-04-27 16:41:40"
+}, {
+  "iPointID": "92",
+  "sPointCode": "PO222",
+  "sZoneName": "Zone 1",
+  "dPointLat": "0",
+  "dPointLong": "0",
+  "dDateTimeAdd": "2018-04-27 16:41:40"
+}, {
+  "iPointID": "93",
+  "sPointCode": "PO333",
+  "sZoneName": "Zone 1",
+  "dPointLat": "0",
+  "dPointLong": "0",
+  "dDateTimeAdd": "2018-04-27 16:41:40"
+}, {
+  "iPointID": "94",
+  "sPointCode": "PO444",
+  "sZoneName": "Zone 1",
+  "dPointLat": "0",
+  "dPointLong": "0",
+  "dDateTimeAdd": "2018-04-27 16:41:40"
+}, {
+  "iPointID": "95",
+  "sPointCode": "PO555",
+  "sZoneName": "Zone 1",
+  "dPointLat": "0",
+  "dPointLong": "0",
+  "dDateTimeAdd": "2018-04-27 16:41:40"
+}, {
+  "iPointID": "96",
+  "sPointCode": "PO666",
+  "sZoneName": "Zone 1",
+  "dPointLat": "0",
+  "dPointLong": "0",
+  "dDateTimeAdd": "2018-04-27 16:41:40"
+}, {
+  "iPointID": "97",
+  "sPointCode": "PO777",
+  "sZoneName": "Zone 1",
+  "dPointLat": "0",
+  "dPointLong": "0",
+  "dDateTimeAdd": "2018-04-27 16:41:40"
+}, {
+  "iPointID": "98",
+  "sPointCode": "PO888",
+  "sZoneName": "Zone 1",
+  "dPointLat": "0",
+  "dPointLong": "0",
+  "dDateTimeAdd": "2018-04-27 16:41:40"
+}, {
+  "iPointID": "99",
+  "sPointCode": "PO999",
+  "sZoneName": "Zone 1",
+  "dPointLat": "0",
+  "dPointLong": "0",
+  "dDateTimeAdd": "2018-04-27 16:41:40"
+}, {
+  "iPointID": "100",
+  "sPointCode": "PO0000",
+  "sZoneName": "Zone 1",
+  "dPointLat": "0",
+  "dPointLong": "0",
+  "dDateTimeAdd": "2018-04-27 16:41:40"
+}, {
+  "iPointID": "101",
+  "sPointCode": "PO0001",
+  "sZoneName": "Zone 1",
+  "dPointLat": "0",
+  "dPointLong": "0",
+  "dDateTimeAdd": "2018-04-27 16:41:40"
+}, {
+  "iPointID": "102",
+  "sPointCode": "",
+  "sZoneName": "Zone 2",
+  "dPointLat": "10.8292489",
+  "dPointLong": "106.7026177",
+  "dDateTimeAdd": "2018-04-27 16:41:40"
+}, {
+  "iPointID": "103",
+  "sPointCode": "",
+  "sZoneName": "Zone 1",
+  "dPointLat": "10.801621666667",
+  "dPointLong": "106.65737333333",
+  "dDateTimeAdd": "2018-06-04 14:05:22"
+}, {
+  "iPointID": "104",
+  "sPointCode": "",
+  "sZoneName": "Zone 1",
+  "dPointLat": "10.80159",
+  "dPointLong": "106.65756666667",
+  "dDateTimeAdd": "2018-06-06 11:05:45"
+}]

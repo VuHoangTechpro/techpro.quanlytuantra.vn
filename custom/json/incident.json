@@ -1,0 +1,13 @@
+[{
+  "iRouteID": 162,
+  "sRouteName": "Z2 - 1",
+  "PointObject": "[{\"iNo\": 1, \"iPointID\": 198, \"dPointLat\": 20.820477737443, \"dPointLong\": 106.77003293635},{\"iNo\": 2, \"iPointID\": 199, \"dPointLat\": 20.819396736255, \"dPointLong\": 106.77190941106},{\"iNo\": 3, \"iPointID\": 200, \"dPointLat\": 20.818662019319, \"dPointLong\": 106.77290679874},{\"iNo\": 4, \"iPointID\": 201, \"dPointLat\": 20.817582182968, \"dPointLong\": 106.77429966219},{\"iNo\": 5, \"iPointID\": 202, \"dPointLat\": 20.816908545892, \"dPointLong\": 106.77377875557},{\"iNo\": 6, \"iPointID\": 203, \"dPointLat\": 20.81414671694, \"dPointLong\": 106.77163875314}]"
+},{
+  "iRouteID": 163,
+  "sRouteName": "Z2 - 2",
+  "PointObject": "[{\"iNo\": 1, \"iPointID\": 203, \"dPointLat\": 20.81414671694, \"dPointLong\": 106.77163875314},{\"iNo\": 2, \"iPointID\": 202, \"dPointLat\": 20.816908545892, \"dPointLong\": 106.77377875557},{\"iNo\": 3, \"iPointID\": 201, \"dPointLat\": 20.817582182968, \"dPointLong\": 106.77429966219},{\"iNo\": 4, \"iPointID\": 200, \"dPointLat\": 20.818662019319, \"dPointLong\": 106.77290679874},{\"iNo\": 5, \"iPointID\": 199, \"dPointLat\": 20.819396736255, \"dPointLong\": 106.77190941106},{\"iNo\": 6, \"iPointID\": 198, \"dPointLat\": 20.820477737443, \"dPointLong\": 106.77003293635}]"
+},{
+  "iRouteID": 164,
+  "sRouteName": "Z2 - 3",
+  "PointObject": "[{\"iNo\": 1, \"iPointID\": 203, \"dPointLat\": 20.81414671694, \"dPointLong\": 106.77163875314},{\"iNo\": 2, \"iPointID\": 198, \"dPointLat\": 20.820477737443, \"dPointLong\": 106.77003293635},{\"iNo\": 3, \"iPointID\": 199, \"dPointLat\": 20.819396736255, \"dPointLong\": 106.77190941106},{\"iNo\": 4, \"iPointID\": 200, \"dPointLat\": 20.818662019319, \"dPointLong\": 106.77290679874},{\"iNo\": 5, \"iPointID\": 201, \"dPointLat\": 20.817582182968, \"dPointLong\": 106.77429966219},{\"iNo\": 6, \"iPointID\": 202, \"dPointLat\": 20.816908545892, \"dPointLong\": 106.77377875557}]"
+}]

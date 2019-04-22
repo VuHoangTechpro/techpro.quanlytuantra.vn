@@ -1,0 +1,16 @@
+[{
+  "iDeviceID": "1",
+  "sDeviceName": "SPEEDATA - QRCode"
+}, {
+  "iDeviceID": "2",
+  "sDeviceName": "SPEEDATA - RFID"
+}, {
+  "iDeviceID": "3",
+  "sDeviceName": "SPEEDATA - 3"
+}, {
+  "iDeviceID": "4",
+  "sDeviceName": "SPEEDATA - 4"
+}, {
+  "iDeviceID": "5",
+  "sDeviceName": "SPEEDATA - 5"
+}]

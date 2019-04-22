@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta http-equiv="Access-Control-Allow-Origin" content="http://patrolapi.quanlytuantra.vn">
+  <!-- font awesome css -->
+  <link rel="stylesheet" href="../../plugins/font-awesome-4.7.0/css/font-awesome.min.css">
+
+  <!-- Bootstrap core css -->
+  <link rel="stylesheet" href="../../MDBFree/css/bootstrap.min.css">
+  <link rel="icon" type="image/png" href="../../img/GuardOnline.png" />
+  <!-- Meterial Design Bootstrap -->
+  <link rel="stylesheet" href="../../MDBFree/css/mdb.min.css">
+
+  <!-- datepicker css -->
+  <link rel="stylesheet" href="../../plugins/bootstrap-datetimepicker/css/bootstrap-datepicker3.min.css">
+
+  <!-- pagination css -->
+  <link rel="stylesheet" href="../../plugins/paginationJs/pagination.css">
+
+  <!-- bootstrap datetime picker css -->
+  <link rel="stylesheet" href="../../plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css">
+
+  <link rel="stylesheet" href="../../plugins/toastr/css/toastr.min.css">
+
+  <!-- custom main css -->
+  <link rel="stylesheet" href="../../custom/css/main.css">
+
+  <title>Live Attendance</title>
+</head>
+
+<body>
+  <!-- navbar start-->
+  <nav class="navbar navbar-expand-lg bg-main-color white-text" style="padding-top: 0; padding-bottom: 0">
+      
+  </nav>
+  <!-- navbar end -->
+
+  <div class="container-fluid">
+
+    <div class="row mt-3">
+      <div class="col-lg-12">
+        <div class="card card-reportAttendance">
+          <!-- card header -->
+          <div class="card-header bg-main-color custom-card-header">
+            <div class="row">
+              <div class="col-8">
+                <h4 class="trn">Live Attendance</h4>
+              </div>
+              <div class="col-4">
+                <input type="text" placeholder="Input guard name to filter..." id="txtFilterAttendance" class="form-control form-control-sm">
+              </div>
+            </div>
+          </div>
+          <div class="card-body custom-card-body">
+            <div class="row my-3">
+              <div class="col-sm-8">
+                <div id="pagingReportAttendanceControl"></div>
+              </div>
+              <div class="col-sm-4">
+                <div id="totalReportAttendance"></div>
+              </div>
+            </div>
+            <div class="row mt-1">
+              <div class="table-responsive">
+              
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row">
+      <div class="col-12">
+          <div class="modal fade modalIncidentImage" id="modalImgReportAtt" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog small-dialog-modal" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h6 class="modal-title" id="exampleModalLabel">Image Report Attendance</h6>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="row">
+                      <div class="col-12">
+                        <img src="" alt="" class="img-fluid img-thumbnail" style="margin: auto; width: 100%;">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12">
+        <!-- Large modal map view -->
+        <div class="modal fade bd-example-modal-lg"
+          id="modalAttendanceMap">
+          <div class="modal-dialog modal-dialog-super-lg-custom">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h6 class="modal-title trn">Map Attendance</h6>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Google Map API -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCDad7iSedJtnPghrxQ46TXU8O4_poJ8No"></script>
+
+  <!-- JQuery core -->
+  <script src="../../MDBFree/js/jquery-3.3.1.min.js"></script>
+
+  <!-- jQuery translate.js -->
+  <script src="../../plugins/translate.js-master/jquery.translate.js"></script>
+
+  <!-- popper js core -->
+  <script src="../../MDBFree/js/popper.min.js"></script>
+
+  <!-- bootstrap js core -->
+  <script src="../../MDBFree/js/bootstrap.min.js"></script>
+
+  <!-- Meterial Design Bootstrap JS -->
+  <script src="../../MDBFree/js/mdb.min.js"></script>
+
+  <!-- bootstrap datepicker js -->
+  <script src="../../plugins/bootstrap-datetimepicker/js/bootstrap-datepicker.min.js"></script>
+
+  <!-- datetimepicker js -->
+  <script src="../../plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+
+  <!-- sweetalert -->
+  <script src="../../plugins/sweetalert/js/sweetalert.min.js"></script>
+
+  <!-- pagination js -->
+  <script src="../../plugins/paginationJs/pagination.min.js"></script>
+
+  <script src="../../plugins/toastr/js/toastr.min.js"></script>
+  <script src="../../plugins/mqttJS/mqttws31.min.js"></script>
+  <script src="../../custom/js/shared/constants.js"></script>
+  <script src="../../custom/js/shared/auth.js"></script>
+  <!-- toastr js -->
+  <script src="../../plugins/toastr/js/toastr.min.js"></script>
+
+  <!-- config js -->
+  <script src="../../custom/js/shared/config-view-components/toastr.config.js"></script>
+  <script src="../../custom/js/shared/mqtt-config/mqtt.config.js"></script>
+
+  <!-- init components -->
+  <script src="../../custom/js/shared/config-view-components/datetime-comp.config.js"></script>
+  
+  <!-- custom main.js -->
+  <script src="../../custom/js/main.js"></script>
+
+ <!-- translate js -->
+ <script src="../../custom/js/translate.js"></script>
+
+ <!-- service request -->
+ <script src="../../custom/js/services/common.service.js"></script>
+ <script src="../../custom/js/services/guard.service.js"></script>
+ <script src="../../custom/js/services/group.service.js"></script>
+ <script src="../../custom/js/services/zone.service.js"></script>
+ <script src="../../custom/js/services/route.service.js"></script>
+ <script src="../../custom/js/services/incident.service.js"></script>
+ <script src="../../custom/js/services/tour.service.js"></script>
+ <script src="../../custom/js/services/device.service.js"></script>
+ <script src="../../custom/js/services/point.service.js"></script>
+ <script src="../../custom/js/services/asset.service.js"></script>
+ <script src="../../custom/js/services/time.service.js"></script>
+ <script src="../../custom/js/services/schedule.service.js"></script>
+ <script src="../../custom/js/services/alert.service.js"></script>
+ <script src="../../custom/js/services/validation.service.js"></script>
+ <script src="../../custom/js/services/VnAccents.service.js"></script>
+ <script src="../../custom/js/services/filter.service.js"></script>
+ <script src="../../custom/js/services/googlemap.service.js"></script>
+
+ <!-- components -->
+ <script src="../../custom/js/components/navbar.component.js"></script>
+ <script src="../../custom/js/components/select.component.js"></script>
+
+<!-- live incident js -->
+<script src="../../custom/js/pages/lives/liveAttendance.js"></script>
+
+
+</body>
+
+</html>

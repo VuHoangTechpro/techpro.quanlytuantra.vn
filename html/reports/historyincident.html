@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta http-equiv="Access-Control-Allow-Origin" content="http://patrolapi.quanlytuantra.vn">  
+  <!-- font awesome css -->
+  <link rel="stylesheet" href="../../plugins/font-awesome-4.7.0/css/font-awesome.min.css">
+
+  <!-- Bootstrap core css -->
+  <link rel="stylesheet" href="../../MDBFree/css/bootstrap.min.css">
+  <link rel="icon" type="image/png" href="../../img/GuardOnline.png" />
+  <!-- Meterial Design Bootstrap -->
+  <link rel="stylesheet" href="../../MDBFree/css/mdb.min.css">
+
+  <!-- datepicker css -->
+  <link rel="stylesheet" href="../../plugins/bootstrap-datetimepicker/css/bootstrap-datepicker3.min.css">
+
+  <!-- bootstrap datetime picker css -->
+  <link rel="stylesheet" href="../../plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css">
+
+  <!-- pagination css -->
+  <link rel="stylesheet" href="../../plugins/paginationJs/pagination.css">
+
+  <link rel="stylesheet" href="../../plugins/toastr/css/toastr.min.css">
+
+  <!-- main view custom css -->
+  <link rel="stylesheet" href="../../custom/css/main.css">
+
+  <!-- incident css -->
+  <link rel="stylesheet" href="../../custom/css/incident.css">
+
+  <title>Incident history</title>
+</head>
+
+<body>
+  <!-- navbar start-->
+  <nav class="navbar navbar-expand-lg bg-main-color white-text" style="padding-top: 0; padding-bottom: 0">
+     
+  </nav>
+  <!-- navbar end -->
+
+  <div class="container-fluid">
+
+    <div class="row my-3 row-custom">
+      <!-- filter and incident card -->
+      <div class="col-lg-2">
+        <!-- card filter start -->
+        <div class="card card filter">
+          <div class="card-header bg-main-color custom-card-header">
+            <h4>
+              <i class="fa fa-filter"></i> <span class="trn">Search</span>
+            </h4>
+          </div>
+          <div class="card-body custom-card-body">
+              <!-- selectIncident -->
+            <div class="row mt-3">
+              <div class="col-12">
+                <label for="" class="trn">Incident</label>
+                <br>
+                <select id="selectIncident" class="form-control selectIncidents"></select>
+              </div>
+            </div>
+            <div class="row mt-3">
+              <div class="col-12">
+                <label for="" class="trn">From date:</label>
+                <br>
+                <input type="text" readonly class="form-control datepicker" style="width: 100%" id="incidentFromDatetime">
+              </div>
+            </div>
+            <div class="row mt-3">
+              <div class="col-12">
+                  <label for="" class="trn">To date:</label>
+                  <br>
+                  <input type="text" readonly class="form-control datepicker" style="width: 100%" id="incidentToDatetime">
+                </div>
+            </div>
+            <div class="row mt-3">
+              <div class="col-12">
+                  <button class="btn btn-custom bg-main-color pull-right trn" id="btnIncidentsExportExcel">Export</button>
+                  <button class="btn btn-custom bg-main-color pull-right trn" id="btnIncidentsData">View</button>
+                  <button class="btn btn-custom bg-main-color pull-right trn" id="btnIncidentsMap">Map</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- card filter end -->
+      </div>
+
+      <div class="col-lg-10">
+
+        <!-- card incident start -->
+        <div class="card card-incident">
+          <div class="card-header bg-main-color custom-card-header">
+            <h4>
+              <i class="fa fa-exclamation-triangle"></i> <span class="trn">Incidents</span></h4>
+          </div>
+          <div class="card-body custom-card-body">
+            <div class="row my-3">
+              <div class="col-sm-8">
+                <div id="pagingIncidentsControl"></div>
+              </div> 
+              <div class="col-sm-4">
+                <div id="totalIncidents"></div>
+              </div>
+            </div>
+            <div class="table-responsive">
+              
+            </div>
+          </div>
+        </div>
+        <!-- card incident end -->
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <!-- Large modal map view -->
+        <div class="modal fade bd-example-modal-lg"
+          id="modalIncidentMap">
+          <div class="modal-dialog modal-dialog-super-lg-custom">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title trn">Map Incident</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12">
+        <!-- image modal -->
+        <div class="modal fade" id="modalIncidentImage">
+          <div class="modal-dialog small-dialog-modal" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title trn" id="exampleModalLabel">Image</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                  <!-- incidentImg -->
+                <img src="" alt="" class="img-fluid img-thumbnail" style="margin: auto; width: 100%" id="incidentImg">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+     <!-- export data -->
+     <div class="row">
+      <div class="col-12">
+        <div class="modal fade" id="modalIncidentsExport" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title trn">Incidents export </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="row">
+                  <div class="col-12">
+                    <div class="table-responsive">
+                      <table class="table table-hover table-striped table-condensed text-center custom-table min-height-table" id="tblIncidentExport">
+                          <thead class="custom-table-header"></thead>
+                          <tbody>
+                            
+                          </tbody>
+                        </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- <div class="modal-footer">
+                <button type="button" class="btn btn-custom bg-main-color trn" data-dismiss="modal">Close</button>
+              </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  
+  <!-- Google Map API -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCDad7iSedJtnPghrxQ46TXU8O4_poJ8No"></script>
+
+  <!-- JQuery core -->
+  <script src="../../MDBFree/js/jquery-3.3.1.min.js"></script>
+
+  <!-- popper js core -->
+  <script src="../../MDBFree/js/popper.min.js"></script>
+
+  <!-- bootstrap js core -->
+  <script src="../../MDBFree/js/bootstrap.min.js"></script>
+
+  <!-- Meterail Design Bootstrap JS -->
+  <script src="../../MDBFree/js/mdb.min.js"></script>
+
+  <!-- bootstrap datepicker js -->
+  <script src="../../plugins/bootstrap-datetimepicker/js/bootstrap-datepicker.min.js"></script>
+
+  <!-- datetimepicker js -->
+  <script src="../../plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+
+  <!-- Image Zoom  -->
+  <script src="../../plugins/elevatezoom-master/jquery.elevateZoom-3.0.8.min.js"></script>
+
+  <script src="../../plugins/elevatezoom-master/jquery.elevatezoom.js"></script>
+
+  <!-- export excel js -->
+  <script src="../../plugins/Export-Html-Table-To-Excel-Spreadsheet-using-jQuery-table2excel/dist/jquery.table2excel.min.js"></script>
+
+  <!-- sweetalert js -->
+  <script src="../../plugins/sweetalert/js/sweetalert.min.js"></script>
+
+  <!-- translate js plugins -->
+  <script src="../../plugins/translate.js-master/jquery.translate.js"></script>
+
+  <!-- paginationJs -->
+  <script src="../../plugins/paginationJs/pagination.min.js"></script>
+
+  <script src="../../plugins/toastr/js/toastr.min.js"></script>
+  <script src="../../plugins/mqttJS/mqttws31.min.js"></script>
+  <script src="../../custom/js/shared/constants.js"></script>
+  <script src="../../custom/js/shared/auth.js"></script>
+
+  <!-- config js -->
+  <script src="../../custom/js/shared/config-view-components/toastr.config.js"></script>
+  <script src="../../custom/js/shared/mqtt-config/mqtt.config.js"></script>
+
+  <!-- init components -->
+  <script src="../../custom/js/shared/config-view-components/datetime-comp.config.js"></script>
+  
+  <!-- custom main.js -->
+  <script src="../../custom/js/main.js"></script>
+
+  <!-- translate js -->
+  <script src="../../custom/js/translate.js"></script>
+
+  <!-- service request -->
+  <script src="../../custom/js/services/common.service.js"></script>
+  <script src="../../custom/js/services/guard.service.js"></script>
+  <script src="../../custom/js/services/group.service.js"></script>
+  <script src="../../custom/js/services/zone.service.js"></script>
+  <script src="../../custom/js/services/route.service.js"></script>
+  <script src="../../custom/js/services/incident.service.js"></script>
+  <script src="../../custom/js/services/tour.service.js"></script>
+  <script src="../../custom/js/services/device.service.js"></script>
+  <script src="../../custom/js/services/point.service.js"></script>
+  <script src="../../custom/js/services/asset.service.js"></script>
+  <script src="../../custom/js/services/time.service.js"></script>
+  <script src="../../custom/js/services/schedule.service.js"></script>
+  <script src="../../custom/js/services/report.service.js"></script>
+  <script src="../../custom/js/services/alert.service.js"></script>
+  <script src="../../custom/js/services/validation.service.js"></script>
+  <script src="../../custom/js/services/filter.service.js"></script>
+  <script src="../../custom/js/services/googlemap.service.js"></script>
+
+  <!-- components -->
+  <script src="../../custom/js/components/navbar.component.js"></script>
+  <script src="../../custom/js/components/select.component.js"></script>
+
+  <!-- report js -->
+  <script src="../../custom/js/pages/reports/historyincident.js"></script>
+
+</body>
+
+</html>

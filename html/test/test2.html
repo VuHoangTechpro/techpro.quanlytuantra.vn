@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../../plugins/toastr/css/toastr.min.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="../../MDBFree/js/jquery-3.3.1.min.js"></script>
+    <script src="../../plugins/toastr/js/toastr.min.js"></script>
+    <script src="../../plugins/mqttJS/mqttws31.min.js" type="text/javascript"></script>
+    <!-- <script src="../../custom/js/pages/test/test1.js"></script> -->
+    <!-- <script>
+        // let host = '192.168.1.20';
+        // let port = 80;
+        // let 
+        let client = new Paho.MQTT.Client("192.168.1.20", 9001, "newID");
+        //Example client = new aho.MQTT.Client("m11.cloudmqtt.com",32903, "web_" +parseInt(Math.random() * 100, 10));
+
+        // set callback handlers
+        client.onConnectionLost = onConnectionLost;
+        client.onMessageArrived = onMessageArrived;
+
+        var options = {
+            useSSL: true,
+            userName: "webapp",
+            password: "123456789",
+            onSuccess: onConnect,
+            onFailure: doFail
+        }
+
+        // connect the client
+        client.connect(options);
+
+        // called when the client connects
+        function onConnect() {
+            // Once a connection has been made, make a subscription and send a message.
+            console.log("onConnected");
+            client.subscribe("GuardTour/Service/Manager/#");
+            message = new Paho.MQTT.Message("Hello CloudMQTT");
+            message.destinationName = "GuardTour/Service/Manager/#";
+            client.send(message);
+        }
+
+        function doFail(e) {
+            console.log('fail');
+            let {
+                errorMessage
+            } = e;
+            console.log(errorMessage);
+        }
+
+        // called when the client loses its connection
+        function onConnectionLost(responseObject) {
+            if (responseObject.errorCode !== 0) {
+                console.log("onConnectionLost:" + responseObject.errorMessage);
+            }
+        }
+
+        // called when a message arrives
+        function onMessageArrived(message) {
+            console.log("onMessageArrived:" + message.payloadString);
+        }
+    </script> -->
+
+    <script type="text/javascript">
+        var mqtt;
+        var reconnectTimeout = 2000;
+        // let host = '115.79.27.219';
+        let host = '115.79.27.219';
+        // let host = 'http://115.79.27.219';
+
+        let port = 9001;
+        let path;
+        let useTLS = false;
+        let useSSL = false;
+        let cleansession = true;
+        let username = 'webapp';
+        let password = '123456789';
+
+        function MQTTconnect() {
+            if (typeof path == "undefined") {
+                path = '';
+            }
+
+            mqtt = new Paho.MQTT.Client(
+                host,
+                port,
+                '',
+                // path,
+                "webapp"
+            );
+
+            var options = {
+                timeout: 3,
+                useSSL: useSSL,
+                cleanSession: cleansession,
+                onSuccess: onConnect,
+                onFailure: function (message) {
+                    // $('#status').val("Connection failed: " + message.errorMessage + "Retrying");
+                    // setTimeout(MQTTconnect, reconnectTimeout);
+                    console.log(message);
+                    console.log('disconnected');
+                }
+            };
+
+            mqtt.onConnectionLost = onConnectionLost;
+            mqtt.onMessageArrived = onMessageArrived;
+
+            if (username != null) {
+                options.userName = username;
+                options.password = password;
+            }
+
+            console.log("Host=" + host + ", port=" + port + ", path=" + path + " TLS = " + useTLS + " username=" +
+                username + " password=" + password);
+
+            mqtt.connect(options);
+        }
+
+        function onConnect() {
+            // $('#status').val('Connected to ' + host + ':' + port + path);
+            // Connection succeeded; subscribe to our topic
+            let topic = 'GuardTour/Service/Manager/#'
+            mqtt.subscribe(topic, {
+                qos: 0
+            });
+            console.log('connected');
+            // $('#topic').val(topic);
+        }
+
+        function onConnectionLost(response) {
+            setTimeout(MQTTconnect, reconnectTimeout);
+            console.log('connection lost');
+            // $('#status').val("connection lost: " + responseObject.errorMessage + ". Reconnecting");
+
+        };
+
+        function onMessageArrived(message) {
+
+            // var topic = message.destinationName;
+            // var payload = message.payloadString;
+            console.log('onMessageArrived');
+            var topic = message.destinationName;
+            var payload = message.payloadString;
+            console.log(topic, payload);
+            // $('#ws').prepend('<li>' + topic + '  = ' + payload + '</li>');
+        };
+
+
+        $(document).ready(function () {
+            MQTTconnect();
+            toasterOptions();
+            toastr.success('Click Button');
+        });
+
+        function toasterOptions() {
+            toastr.options = {
+                "closeButton": true,//false
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": true,
+                "positionClass": "toast-top-center",
+                "preventDuplicates": true,
+                "onclick": null,
+                "showDuration": "100",
+                "hideDuration": "1000",
+                "timeOut": "3000", //5000
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "show",
+                "hideMethod": "hide"
+            };
+        };
+    </script>
+</body>
+
+</html>

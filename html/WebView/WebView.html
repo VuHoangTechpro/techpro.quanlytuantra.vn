@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <title>Guard Map</title>
+</head>
+
+<body>
+  
+ <div class="container-fluid">
+    <div id="mapid" style="position: absolute; top: 0; left: 0; width:100%; height: 100%; float:left"></div>
+ </div>
+
+  <!-- Google Map API -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCDad7iSedJtnPghrxQ46TXU8O4_poJ8No"></script>
+  <script src="http://code.jquery.com/jquery-1.8.0.min.js"></script>
+
+  <script>
+
+    var URL_OBJECT, sTourCode, iGuardID;
+    //const APP_DOMAIN = 'http://115.79.27.219/GuardTourApi/';
+
+    URL_OBJECT = getUrlVars();
+    if(URL_OBJECT){
+      sTourCode = URL_OBJECT['sTourCode'];
+      iGuardID = URL_OBJECT['iGuardID'];
+	    //getGuardGPSCurrent(iGuardID);
+      buildMap(iGuardID, sTourCode);
+    }
+
+    function createMarkerGoogleMap(pos, urlIcon){
+      var icon = createIconGoogleMap(urlIcon);
+      var marker = new google.maps.Marker({
+        position: pos,
+        // animation: google.maps.Animation.BOUNCE,
+        icon: icon
+      });
+      return marker;
+    }
+
+    function createInfoWindowGoogleMap(content){
+      var infoWindow = new google.maps.InfoWindow({
+          content:content
+        });
+        return infoWindow
+    }
+
+    function createIconGoogleMap(url){
+      var icon = {
+        url: url, // url
+        scaledSize: new google.maps.Size(17, 17), // scaled size
+        origin: new google.maps.Point(0, 0), // origin
+        anchor: new google.maps.Point(0, 0) // anchor
+      };
+      return icon;
+    }
+
+    function createPolylineGoogleMap(path){
+      var polyline = new google.maps.Polyline({
+        path: path,
+        strokeColor: "red",
+        strokeOpacity: 0.8,
+        strokeWeight: 4
+      });
+      return polyline;
+    }
+
+    function createPolygonGooglemap(path){
+      var polygon = new google.maps.Polygon({
+        path: path,
+        strokeColor: "green",
+        strokeOpacity: 0.8,
+        strokeWeight: 2,
+        fillColor: "green",
+        fillOpacity: 0.4
+      });
+      return polygon;
+    }
+
+    function createMapPropGoogleMap(zoom, lat, lng){
+      var mapProp = {
+        center: new google.maps.LatLng(lat, lng),
+        zoom: zoom,
+      };
+      return mapProp;
+    }
+
+    function getUrlVars() {
+      var vars = {};
+      var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m, key, value) {
+          vars[key] = value;
+      });
+      return vars;
+    }
+
+    function getGuardGPSCurrent(iGuardID) {
+      //var id = sentData.iGuardID;
+      var url = 'http://patrolapi.quanlytuantra.vn/mobi/data/GuardLocationCurrent.php?iGuardID=' + iGuardID;
+	    //console.log(url);
+      //var data = fetch(url);
+      //var jsonData;
+      //console.log(url);
+      return $.getJSON(url);
+      //console.log(jsonData);
+      //if(!Array.isArray(jsonData)) return null;
+      //if(jsonData.length == 0) return null;
+      //return jsonData;
+    }
+
+    function getPointChecking(iGuardID, sTourCode) {
+      //var code = sentData.sCheckingCode;
+      var url = 'http://patrolapi.quanlytuantra.vn/mobi/data/CheckPointOfTour.php?sTourCode=' + sTourCode;
+      //var data = fetch(url);
+      //var jsonData = data.json();
+      return $.get(url);
+      //if(!Array.isArray(jsonData)) return null;
+      //if(jsonData.length == 0) return null;
+      //return jsonData;
+    }
+  
+    function buildMap(iGuardID, sCheckingCode)
+    {
+
+      var mapProp = createMapPropGoogleMap(15, 20.81715284, 106.77411238);
+      var mapArea = document.getElementById('mapid');
+      var mymap = new google.maps.Map(mapArea, mapProp);
+
+      getPointChecking(iGuardID, sCheckingCode).then(function(checkingPointData)
+      {
+          if(checkingPointData)
+          {
+              //console.log(checkingPointData);
+              var listpoint = JSON.parse(checkingPointData);
+              for (var i in listpoint) 
+              {
+                  var url = '';
+                  switch(listpoint[i].Status){
+                      case 1: 
+                      url = '../../img/Checked.png'; 
+                      break;
+                      case 2: 
+                      url = '../../img/None.png'; 
+                      break;
+                      case 3: 
+                      url = '../../img/Waiting.png'; 
+                      break;
+                      case 4: 
+                      url = '../../img/error.png'; 
+                      break;
+                  }
+                      var pos = new google.maps.LatLng(listpoint[i].Lat, listpoint[i].Long);
+                      var marker = createMarkerGoogleMap(pos, url);
+                      marker.setMap(mymap);
+                      var mes = listpoint[i].Message;
+                      if(listpoint[i].Status != 4){
+                          var infoWindow = createInfoWindowGoogleMap(mes);
+                          infoWindow.open(mymap, marker);
+                      }
+              }
+          }
+      })
+
+      getGuardGPSCurrent(iGuardID).then(function(guardGPSCurrent){
+          dGuardLatCurrent = guardGPSCurrent[0].dGuardLatCurrent;
+          dGuardLongCurrent = guardGPSCurrent[0].dGuardLongCurrent;
+          sMessage = guardGPSCurrent[0].sMessage; 
+          bOnline = guardGPSCurrent[0].bOnline;;
+          var latGuard = Number(dGuardLatCurrent);
+          var lngGuard = Number(dGuardLongCurrent);    
+          var urlGuard = '../../img/GuardOnline.png';
+          var mainPos = new google.maps.LatLng(latGuard, lngGuard);
+          var guardMarker = createMarkerGoogleMap(mainPos, urlGuard);
+          guardMarker.setMap(mymap);
+          mymap.setCenter(mainPos);
+          var infoWindowGuard = createInfoWindowGoogleMap(sMessage);
+          infoWindowGuard.open(mymap, guardMarker);
+          //createMapPropGoogleMap(dGuardLatCurrent, dGuardLongCurrent)
+      })
+}
+  
+  </script>
+
+</body>
+
+</html>
